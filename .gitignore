@@ -1,0 +1,34 @@
+src/*.exe
+src/gridccoinstake
+src/gridcoinstaked
+src/test_gridcoin
+src/build.h
+contrib/deprecated
+contrib/deprecated/bin
+release
+.*.swp
+*.*~*
+*.bak
+*.rej
+*.orig
+*.o
+*.patch
+*.pgp
+*.gpg
+GridcoinStake.zip
+.gridcoin
+.gridcoinstake
+#compilation and Qt preprocessor part
+*.qm
+Makefile
+gridcoin-qt
+gridcoinstake
+#resources cpp
+qrc_*.cpp
+#qt creator
+*.pro.user
+#mac specific
+.DS_Store
+build
+
+!src/leveldb/Makefile
