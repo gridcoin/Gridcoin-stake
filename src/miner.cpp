@@ -18,6 +18,7 @@ using namespace std;
 extern unsigned int nMinerSleep;
 MiningCPID GetNextProject();
 
+bool TallyNetworkAverages(bool ColdBoot);
 
 std::string SerializeBoincBlock(MiningCPID mcpid);
 bool LessVerbose(int iMax1000);
@@ -137,6 +138,8 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
     txNew.vin[0].prevout.SetNull();
     txNew.vout.resize(1);
 
+
+
     if (!fProofOfStake)
     {
         CReserveKey reservekey(pwallet);
@@ -144,15 +147,17 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
         if (!reservekey.GetReservedKey(pubkey))
             return NULL;
         txNew.vout[0].scriptPubKey.SetDestination(pubkey.GetID());
+
+		printf("Generating PoW standard payment\r\n");
     }
     else
     {
         // Height first in coinbase required for block.version=2
         txNew.vin[0].scriptSig = (CScript() << nHeight) + COINBASE_FLAGS;
-        assert(txNew.vin[0].scriptSig.size() <= 100);
-
+	    assert(txNew.vin[0].scriptSig.size() <= 100);
         txNew.vout[0].SetEmpty();
-    }
+    
+       }
 
     // Add our coinbase tx as first transaction
     pblock->vtx.push_back(txNew);
@@ -598,7 +603,12 @@ void StakeMiner(CWallet *pwallet)
         if (pblock->SignBlock(*pwallet, nFees))
         {
             SetThreadPriority(THREAD_PRIORITY_NORMAL);
-            CheckStake(pblock.get(), *pwallet);
+			bool Staked = CheckStake(pblock.get(), *pwallet);
+			if (Staked)
+			{
+				printf("Stake block accepted!\r\n");
+				//TallyNetworkAverages(false);
+			}
             SetThreadPriority(THREAD_PRIORITY_LOWEST);
             MilliSleep(500);
         }

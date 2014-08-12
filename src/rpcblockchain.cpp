@@ -17,7 +17,6 @@ using namespace std;
 
 extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, json_spirit::Object& entry);
 extern enum Checkpoints::CPMode CheckpointsMode;
-void GetNextGPUProject(bool force);
 
 int CreateRestorePoint();
 int DownloadBlocks();
@@ -44,8 +43,9 @@ void PobSleep(int milliseconds);
 extern double GetNetworkAvgByProject(std::string projectname);
 extern bool FindRAC(bool CheckingWork, std::string TargetCPID, std::string TargetProjectName, double pobdiff, bool bCreditNodeVerification, std::string& out_errors, int& out_position);
 void HarvestCPIDs(bool cleardata);
-bool TallyNetworkAverages();
-void RestartGridcoin3();
+bool TallyNetworkAverages(bool ColdBoot);
+void RestartGridcoin10();
+
 std::string GetHttpPage(std::string cpid);
 std::string GetHttpPage(std::string cpid, bool usedns);
 
@@ -104,18 +104,18 @@ double GetNetworkAvgByProject(std::string projectname)
 	{
 		if (mvNetwork.size() < 1)
 		{
-			return 9999;
+			return 0;
 		}
 	
 		StructCPID structcpid = mvNetwork[projectname];
-		if (!structcpid.initialized) return 9999;
+		if (!structcpid.initialized) return 0;
 		double networkavgrac = structcpid.AverageRAC;
 		return networkavgrac;
 	}
 	catch (std::exception& e)
 	{
 			printf("Error retrieving Network Avg\r\n");
-			return 9999;
+			return 0;
 	}
 
 
@@ -382,10 +382,7 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPri
 
     if (block.IsProofOfStake())
         result.push_back(Pair("signature", HexStr(block.vchBlockSig.begin(), block.vchBlockSig.end())));
-
-	result.push_back(Pair("VchTxHashBoinc", block.vtx[0].hashBoinc));
 	
-
 	MiningCPID bb = DeserializeBoincBlock(block.vtx[0].hashBoinc);
 	uint256 blockhash = block.GetPoWHash();
 	std::string sblockhash = blockhash.GetHex();
@@ -394,24 +391,12 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPri
 	result.push_back(Pair("BlockDiffBytes", (double)bb.diffbytes));
 	result.push_back(Pair("RAC", bb.rac));
 	result.push_back(Pair("NetworkRAC", bb.NetworkRAC));
+	result.push_back(Pair("Magnitude", bb.Magnitude));
 	result.push_back(Pair("BoincHash",block.vtx[0].hashBoinc));
-		
-	result.push_back(Pair("AES512SkeinHash", bb.aesskein));
 	std::string skein2 = aes_complex_hash(blockhash);
-	result.push_back(Pair("AESCalcHash",skein2));
-	uint256 boincpowhash = block.hashMerkleRoot + bb.nonce;
-
-	int iav  = TestAESHash(bb.rac, (unsigned int)bb.diffbytes, boincpowhash, bb.aesskein);
-	result.push_back(Pair("AES512Valid",iav));
-
-	result.push_back(Pair("Vouching For CPID", bb.VouchedCPID));
-	result.push_back(Pair("Vouched Magnitude", bb.VouchedMagnitude));
-
-	result.push_back(Pair("Vouched RAC", bb.VouchedRAC));
-
-	result.push_back(Pair("Vouched Network RAC", bb.VouchedNetworkRAC));
-								
-
+	//uint256 boincpowhash = block.hashMerkleRoot + bb.nonce;
+	//int iav  = TestAESHash(bb.rac, (unsigned int)bb.diffbytes, boincpowhash, bb.aesskein);
+    //	result.push_back(Pair("AES512Valid",iav));
 	result.push_back(Pair("ClientVersion",bb.clientversion));	
 	std::string hbd = AdvancedDecrypt(bb.enccpid);
 	bool IsCpidValid = IsCPIDValid(bb.cpid, bb.enccpid);
@@ -431,16 +416,13 @@ Value showblock(const Array& params, bool fHelp)
     int nHeight = params[0].get_int();
     if (nHeight < 0 || nHeight > nBestHeight)
         throw runtime_error("Block number out of range.");
-
     CBlockIndex* pblockindex = FindBlockByHeight(nHeight);
 
     if (pblockindex==NULL)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Block not found");
-
     CBlock block;
     block.ReadFromDisk(pblockindex);
-    return blockToJSON(block, pblockindex,true);
-	//	  return blockToJSON(block, pblockindex, params.size() > 1 ? params[1].get_bool() : false);
+    return blockToJSON(block, pblockindex, false);
 }
 
 
@@ -830,7 +812,7 @@ Value execute(const Array& params, bool fHelp)
 			#if defined(WIN32) && defined(QT_GUI)
 			//We must stop the node before we can do this
 			r = CreateRestorePoint();
-			RestartGridcoin3();
+			//RestartGridcoin();
 
 			#endif 
 			entry.push_back(Pair("Restore Point",r));
@@ -847,7 +829,7 @@ Value execute(const Array& params, bool fHelp)
 	}
 	else if (sItem == "tally")
 	{
-			TallyNetworkAverages();
+			TallyNetworkAverages(true);
 			entry.push_back(Pair("Tally Network Averages",1));
 			results.push_back(entry);
 	}
@@ -883,6 +865,13 @@ Value execute(const Array& params, bool fHelp)
 			entry.push_back(Pair("Resending unsent wallet transactions...",1));
 			results.push_back(entry);
 	} 
+	else if (sItem == "restartnetlayer")
+	{
+				entry.push_back(Pair("Restarting Net Layer",1));
+				RestartGridcoin10();
+
+		
+	}
 	else if (sItem == "postcpid")
 	{
 			std::string result = GetHttpPage("859038ff4a9",true);
@@ -902,7 +891,7 @@ Value execute(const Array& params, bool fHelp)
 	else if (sItem == "restartnet")
 	{
 			printf("Restarting gridcoin's network layer;");
-			RestartGridcoin3();
+			RestartGridcoin10();
 			entry.push_back(Pair("Execute","Restarted Gridcoins network layer."));
 	   		results.push_back(entry);
 	}
@@ -916,28 +905,6 @@ Value execute(const Array& params, bool fHelp)
 			entry.push_back(Pair("TargetCPID",TargetCPID));
 			entry.push_back(Pair("Errors",out_errors));
 		   	results.push_back(entry);
-	}
-	else if (sItem=="genminingkey")
-	{
-		 //7-3-2014
-		 std::string grc = DefaultWalletAddress();
-		 GetNextGPUProject(true);
-		 bool IsCpidValid = IsCPIDValid(msGPUMiningCPID, msGPUENCboincpublickey);
-		 if (!IsCpidValid)
-		 {
-			entry.push_back(Pair("Errors","Failed to retrieve boinc CPID"));
-
-		 }
-		 std::string bpk = AdvancedDecrypt(msGPUENCboincpublickey);
-		 std::string bpmd5 = RetrieveMd5(bpk);
-		 std::string concatminingkey = grc + ";" + bpk;
-    	 //entry.push_back(Pair("BPK",bpk));
-		 //entry.push_back(Pair("md5",bpmd5));
-		 //entry.push_back(Pair("concat",concatminingkey));
-	 	 std::string miningkey = EncodeBase64(concatminingkey);
-		 entry.push_back(Pair("miningkey",miningkey));
-         results.push_back(entry);
-	
 	}
 	else
 	{
@@ -956,18 +923,23 @@ Array MagnitudeReport()
 		   Object c;
 		   c.push_back(Pair("Report","Magnitude Report"));
 		   results.push_back(c);
+		   StructCPID globalmag = mvMagnitudes["global"];
+		   double payment_timespan = (globalmag.HighLockTime-globalmag.LowLockTime)/86400;  //Lock time window in days
+		   			Object entry;
+					entry.push_back(Pair("Payment Window",payment_timespan));
+								results.push_back(entry);
 
-			for(map<string,StructCPID>::iterator ii=mvMagnitudes.begin(); ii!=mvMagnitudes.end(); ++ii) 
-			{
+		   for(map<string,StructCPID>::iterator ii=mvMagnitudes.begin(); ii!=mvMagnitudes.end(); ++ii) 
+		   {
 				// For each CPID on the network, report:
-				// CPID; Magnitude; Payments; Owed
 				StructCPID structMag = mvMagnitudes[(*ii).first];
-				if (structMag.initialized && !structMag.isvoucher) 
+				if (structMag.initialized && structMag.cpid.length() > 2) 
 				{ 
 								
 								Object entry;
 								entry.push_back(Pair("CPID",structMag.cpid));
 								entry.push_back(Pair("Magnitude",structMag.Magnitude));
+								entry.push_back(Pair("Magnitude Accuracy",structMag.Accuracy));
 								entry.push_back(Pair("Payments",structMag.payments));
 								entry.push_back(Pair("Owed",structMag.outstanding));
 								entry.push_back(Pair("Avg Daily Payments",structMag.payments/14));
@@ -976,18 +948,7 @@ Array MagnitudeReport()
 				}
 
 			}
-			//Report Who we are vouching for:
-			StructCPID Voucher = mvMagnitudes["VOUCHER"];
-			if (Voucher.initialized)
-			{
-								Object entry;
-								entry.push_back(Pair("Vouching For CPID",Voucher.cpid));
-								entry.push_back(Pair("Magnitude",Voucher.Magnitude));
-								entry.push_back(Pair("Total RAC",Voucher.TotalRAC));
-								entry.push_back(Pair("Vouched Total Network RAC",Voucher.TotalNetworkRAC));
-								results.push_back(entry);
-			}				
-
+		
 			return results;
 }
 
@@ -1013,6 +974,85 @@ Value listitem(const Array& params, bool fHelp)
 	e2.push_back(Pair("Command",sitem));
 	results.push_back(e2);
 
+
+	if (sitem == "explainmagnitude")
+	{
+
+		double mytotalrac = 0;
+		double nettotalrac  = 0;
+		double mycount = 0;
+		double projpct = 0;
+		double mytotalpct = 0;
+		double myprojects = 0;
+		double TotalMagnitude = 0;
+		double Mag = 0;
+		Object entry;
+
+		for(map<string,StructCPID>::iterator ii=mvCPIDs.begin(); ii!=mvCPIDs.end(); ++ii) 
+		{
+			StructCPID structcpid = mvCPIDs[(*ii).first];
+				
+	        if (structcpid.initialized) 
+			{ 
+				
+				if (structcpid.projectname.length() > 2)
+				{
+				double ProjectRAC = GetNetworkAvgByProject(structcpid.projectname);
+				
+				bool cpidDoubleCheck = IsCPIDValid(structcpid.cpid,structcpid.boincpublickey);
+				bool including = (ProjectRAC > 1 && structcpid.rac > 100 && structcpid.Iscpidvalid && cpidDoubleCheck && structcpid.verifiedrac > 100);
+				std::string narr = "";
+				
+				if (including) 
+				{ 
+					narr="Enumerating";
+				} 
+				else 
+				{
+					narr = "Skipping";
+				}
+
+				if (structcpid.projectname.length() > 1)
+				{
+
+					entry.push_back(Pair(narr + " Project",structcpid.projectname));
+				}
+				if (ProjectRAC > 1 && structcpid.rac > 100 && structcpid.Iscpidvalid && cpidDoubleCheck && structcpid.verifiedrac > 100)
+				{
+
+					if (ProjectRAC > 100)
+					{
+						projpct = structcpid.verifiedrac/(ProjectRAC+.01);
+						nettotalrac = nettotalrac + ProjectRAC;
+						mytotalrac = mytotalrac + structcpid.verifiedrac;
+						mytotalpct = mytotalpct + projpct;
+						myprojects++;
+						double project_magnitude = structcpid.verifiedrac/(ProjectRAC+.01) * 100;
+						TotalMagnitude = TotalMagnitude + project_magnitude;
+						Mag = (TotalMagnitude/myprojects);
+						entry.push_back(Pair("Projects",myprojects));
+
+						entry.push_back(Pair("Project Verified RAC",structcpid.verifiedrac));
+						entry.push_back(Pair("Network RAC",ProjectRAC));
+						entry.push_back(Pair("Project Magnitude",project_magnitude));
+						
+
+						entry.push_back(Pair("Project-User Magnitude",Mag));
+
+
+					}
+				}
+			  }
+			}
+		}
+
+		entry.push_back(Pair("Grand-Total Verified RAC",mytotalrac));
+		entry.push_back(Pair("Grand-Total Network RAC",nettotalrac));
+		entry.push_back(Pair("Grand-Total Magnitude",Mag));
+		results.push_back(entry);
+		return results;
+
+	}
 
 
 	if (sitem == "magnitude")
@@ -1054,7 +1094,7 @@ Value listitem(const Array& params, bool fHelp)
 		{
 			double myrac=cdbl(args,0);
 			subsidy = Lederstrumpf(myrac,1000);
-			entry.push_back(Pair("Subsidy",subsidy));//7-19-2014
+			entry.push_back(Pair("Subsidy",subsidy));
 		}
 		results.push_back(entry);
 
@@ -1065,8 +1105,7 @@ Value listitem(const Array& params, bool fHelp)
 
 	if (sitem == "network") 
 	{
-		//4-9-2014
-
+		
 		for(map<string,StructCPID>::iterator ii=mvNetwork.begin(); ii!=mvNetwork.end(); ++ii) 
 		{
 

@@ -34,13 +34,12 @@ std::string AppCache(std::string key);
 int CloseGuiMiner();
 bool fGenerate = false;
 extern void InitializeBoincProjects();
-extern void RestartGridcoin3();
+
 bool IsConfigFileEmpty();
 void GetNextProject();
-void GetNextGPUProject(bool force);
 void HarvestCPIDs(bool cleardata);
 std::string ToOfficialName(std::string proj);
-bool TallyNetworkAverages();
+bool TallyNetworkAverages(bool ColdBoot);
 std::string RestoreGridcoinBackupWallet();
 std::string BackupGridcoinWallet();
 void WriteAppCache(std::string key, std::string value);
@@ -121,6 +120,9 @@ void DetectShutdownThread(boost::thread_group* threadGroup)
 		{
 			printf("Shutting down forcefully...");
             threadGroup->interrupt_all();
+			//threadGroup.join_all();
+			printf("Stopping node\r\n");
+			StopNode();
 		}
     }
 }
@@ -160,8 +162,7 @@ void InitializeBoincProjects()
         boinc_projects[6] = "http://pogs.theskynet.org/pogs/      |theskynet pogs";
         boinc_projects[8] = "http://setiathome.berkeley.edu/      |SETI@home";
         boinc_projects[11] = "http://boinc.gorlaeus.net/          |Leiden Classical";
-		//Leiden Classical
-        boinc_projects[12] = "http://home.edges-grid.eu/home/     |EDGeS@Home";
+	    boinc_projects[12] = "http://home.edges-grid.eu/home/     |EDGeS@Home";
         boinc_projects[13] = "http://milkyway.cs.rpi.edu/milkyway/|Milkyway@Home";
         boinc_projects[15] = "http://casathome.ihep.ac.cn/        |CAS@home";
         boinc_projects[16] = "http://aerospaceresearch.net/constellation/|Constellation";
@@ -243,7 +244,6 @@ void InitializeBoincProjects()
 
 		}
 
-
 }
 
 
@@ -273,7 +273,7 @@ void Shutdown(void* parg)
     {
         fShutdown = true;
         nTransactionsUpdated++;
-//        CTxDB().Close();
+		//        CTxDB().Close();
         bitdb.Flush(false);
         StopNode();
         bitdb.Flush(true);
@@ -292,7 +292,7 @@ void Shutdown(void* parg)
     else
     {
         while (!fExit)
-            MilliSleep(500);
+            MilliSleep(100);
         MilliSleep(100);
         ExitThread(0);
     }
@@ -584,8 +584,6 @@ bool AppInit2()
 		   uiInterface.ThreadSafeMessageBox(
                        "Configuration file empty.  \r\n" + _("Would you like to Exit?"),
                     "", 0);
-		   //if (!fRet) printf("Client notified.");
-             
 	}
 
 	//6-10-2014: R Halford: Updating Boost version to 1.5.5 to prevent sync issues; print the boost version to verify:
@@ -607,16 +605,11 @@ bool AppInit2()
 
 	
 	LoadCPIDsInBackground();
-	
-
-
 
     nNodeLifespan = GetArg("-addrlifespan", 7);
     
 	
 	fUseFastIndex = GetBoolArg("-fastindex", false);
-
-    
 	
 	nMinerSleep = GetArg("-minersleep", 500);
 
@@ -769,8 +762,8 @@ bool AppInit2()
     }
 #endif
 
-    if (GetBoolArg("-shrinkdebugfile", !fDebug))
-        ShrinkDebugFile();
+    if (GetBoolArg("-shrinkdebugfile", !fDebug) || true)        ShrinkDebugFile();
+
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("GridCoin version %s (%s)\n", FormatFullVersion().c_str(), CLIENT_DATE.c_str());
     printf("Using OpenSSL version %s\n", SSLeay_version(SSLEAY_VERSION));
@@ -995,8 +988,6 @@ bool AppInit2()
     }
 
     // ********************************************************* Testing Zerocoin
-
-
     if (GetBoolArg("-zerotest", false))
     {
         printf("\n=== ZeroCoin tests start ===\n");
@@ -1129,15 +1120,13 @@ bool AppInit2()
     printf("Loaded %i addresses from peers.dat  %"PRId64"ms\n",
            addrman.size(), GetTimeMillis() - nStart);
 
-    // ********************************************************* Step 11: start node
-
+    
 	// ********************************************************* Step 11: start node
 	uiInterface.InitMessage(_("Loading Network Averages..."));
+	TallyNetworkAverages(true);	
 
-	TallyNetworkAverages();	
+	uiInterface.InitMessage(_("Finding first applicable Research Project..."));
 	
-
-
     if (!CheckDiskSpace())
         return false;
 

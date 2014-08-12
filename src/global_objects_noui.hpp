@@ -114,8 +114,12 @@ struct MiningEntry {
 		double verifiedTotalRAC;
 		double verifiedTotalNetworkRAC;
 		double verifiedMagnitude;
-		
-					
+        double TotalMagnitude;
+		double MagnitudeCount;
+		double LowLockTime;
+		double HighLockTime;
+		double Accuracy;
+
 	};
 
 
@@ -165,7 +169,7 @@ struct MiningEntry {
 		double VouchedMagnitude;
 		double VouchedRAC;
 		double VouchedNetworkRAC;
-
+		double Magnitude;
 
 	};
 

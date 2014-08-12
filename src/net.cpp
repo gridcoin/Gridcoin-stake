@@ -35,6 +35,10 @@ using namespace boost;
 extern std::string GetHttpPage(std::string cpid, bool usedns);
 
 
+
+extern void RestartGridcoin10();
+
+
 std::string ExtractXML(std::string XMLdata, std::string key, std::string key_end);
 
 std::string cached_boinchash_args = "";
@@ -1835,6 +1839,10 @@ void static ThreadStakeMiner(void* parg)
 {
     printf("ThreadStakeMiner started\n");
     CWallet* pwallet = (CWallet*)parg;
+	while (!bCPIDsLoaded)
+	{
+		MilliSleep(100);
+	}
     try
     {
         vnThreadsRunning[THREAD_STAKE_MINER]++;
@@ -2439,7 +2447,14 @@ void StartNodeNetworkOnly()
 
 
 
+void RestartGridcoin10()
+{
+	bool OK = StopNode();
+	void* parg;
+	StartNode(parg);
 
+
+}
 
 
 
@@ -2449,7 +2464,8 @@ void StartNode(void* parg)
 {
     // Make this thread recognisable as the startup thread
     RenameThread("gridcoin-start");
-
+	fShutdown = false;
+    
     if (semOutbound == NULL) {
         // initialize semaphore
         int nMaxOutbound = min(MAX_OUTBOUND_CONNECTIONS, (int)GetArg("-maxconnections", 125));

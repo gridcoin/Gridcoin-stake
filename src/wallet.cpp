@@ -1549,6 +1549,18 @@ bool CWallet::GetStakeWeight(uint64_t& nWeight)
             }
         }
     }
+	//8-10-2014
+
+
+/*
+	//HALFORD: 8-5-2014
+	if (nWeight > 0 && boincmangitude > 0)
+	{
+		int64_t magnitude_percent = boincmagnitude/100;
+		int64_t boinc_boost = nWeight * magnitude_percent;
+		//nWeight += boinc_boost;
+	}
+	*/
 
     return true;
 }
@@ -1572,6 +1584,18 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
     if (nBalance <= nReserveBalance)
         return false;
+
+	//Gridcoin
+	if (!GlobalCPUMiningCPID.initialized)
+	{
+		printf("Global Mining CPID not initialized yet.. Unable to stake\r\n");
+		return false;
+	}
+	if (GlobalCPUMiningCPID.cpid == "")
+	{
+		printf("Global Mining CPID not initialized yet.. Unable to stake\r\n");
+		return false;
+	}
 
     vector<const CWalletTx*> vwtxPrev;
 
@@ -1730,9 +1754,9 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         if (!txNew.GetCoinAge(txdb, nCoinAge))
             return error("CreateCoinStake : failed to calculate coin age");
 
-        int64_t nReward = GetProofOfStakeReward(nCoinAge, nFees);
-        if (nReward <= 0)
-            return false;
+        int64_t nReward = GetProofOfStakeReward(nCoinAge, nFees,GlobalCPUMiningCPID.cpid);
+	
+        if (nReward <= 0)       return false;
 
         nCredit += nReward;
     }

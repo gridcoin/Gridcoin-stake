@@ -99,7 +99,7 @@ void ThreadCPIDs();
 int Races(int iMax1000);
 std::string GetGlobalStatus();
 std::string GetHttpPage(std::string cpid);
-bool TallyNetworkAverages();
+bool TallyNetworkAverages(bool ColdBoot);
 void LoadCPIDsInBackground();
 void InitializeCPIDs();
 void RestartGridcoinMiner();
@@ -107,6 +107,7 @@ extern int UpgradeClient();
 extern int CloseGuiMiner();
 std::string RetrieveMd5(std::string s1);
 void WriteAppCache(std::string key, std::string value);
+void RestartGridcoin10();
 
 void HarvestCPIDs(bool cleardata);
 extern int RestartClient();
@@ -118,7 +119,6 @@ int ThreadSafeVersion();
 void FlushGridcoinBlockFile(bool fFinalize);
 extern int ReindexBlocks();
 bool OutOfSync();
-void RestartGridcoin3();
 
 
 
@@ -310,8 +310,7 @@ int CreateRestorePoint()
 			QString sArgument = "";
 			QString path = QCoreApplication::applicationDirPath() + "\\" + sFilename;
 			QProcess p;
-            StopGridcoin3();
-
+            
 
 			if (!fTestNet)
 			{
@@ -325,7 +324,7 @@ int CreateRestorePoint()
 				globalcom->dynamicCall("CreateRestorePointTestNet()");
 #endif
 			}
-			RestartGridcoin3();
+			//RestartGridcoin
 
 			return 1;
 }
@@ -1394,7 +1393,7 @@ void BitcoinGUI::timerfire()
 
 
 		std::string time1 =  DateTimeStrFormat("%m-%d-%Y %H:%M:%S", GetTime());
-		if (Timer("timestamp",15))
+		if (Timer("timestamp",6*5))
 		{
 			printf("Timestamp: %s\r\n",time1.c_str());
 		}
@@ -1430,19 +1429,10 @@ void BitcoinGUI::timerfire()
     		bForceUpdate=true;
 		}
 
-		if (Timer("update_boinc_magnitude", 40))
+		if (Timer("update_boinc_magnitude", 6*10))
 		{
-			    /*
 				double POB = GetPoBDifficulty();
-				if (!fTestNet && (POB==99 || POB < .05) && !OutOfSyncByAge()) 
-				{
-					//Do this when wallet *was* out of sync, is now in sync, and PoB calculation is out of whack:
-					TallyNetworkAverages();
-					POB = GetPoBDifficulty();
-				}
-				*/
-				double POB = GetPoBDifficulty();
-				TallyNetworkAverages();
+				TallyNetworkAverages(false);
 			
 				QString bm = QString::fromUtf8(RoundToString(boincmagnitude,2).c_str());
 				nBoincUtilization = (int)boincmagnitude;
@@ -1454,22 +1444,18 @@ void BitcoinGUI::timerfire()
 
 		
 
-		if (Timer("net_averages",350)) 
+		if (true)
 		{
-			printf("\r\nReharvesting Gridcoin Net Averages\r\n");
-		    TallyNetworkAverages();
-		}
-		
-
-
-		if (mapArgs["-restartnetlayer"] == "true") 
+		if (mapArgs["-restartnetlayer"] != "false") 
 		{
-			if (Timer("restart_network",30))
+			if (Timer("restart_network",6*25))
 			{
 				printf("\r\nRestarting gridcoin's network layer @ %s\r\n",time1.c_str());
-				RestartGridcoin3();
+				RestartGridcoin10();
 			}
 		}
+		}
+
 
         if (false)
 		{
