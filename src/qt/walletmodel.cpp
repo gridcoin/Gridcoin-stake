@@ -142,6 +142,14 @@ bool WalletModel::validateAddress(const QString &address)
     return addressParsed.IsValid();
 }
 
+
+
+double dblFromAmount(int64_t amount)
+{
+    return (double)amount / (double)COIN;
+}
+
+
 WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipient> &recipients, const CCoinControl *coinControl)
 {
     qint64 total = 0;
@@ -216,6 +224,25 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
             }
             return TransactionCreationFailed;
         }
+       
+
+		//8-12-2014
+		std::string samt = FormatMoney(wtx.vout[0].nValue);
+		double dblAmt = dblFromAmount(wtx.vout[0].nValue);
+		/*
+		printf("tx creation %s real %f  val  %f" ,samt.c_str(),wtx.vout[0].nValue,dblAmt);
+
+		if (dblAmt == .12315 || dblAmt == .12325 || dblAmt == .12335 || dblAmt == .12335 || dblAmt == .12345 || (dblAmt <  0.122980  && dblAmt >  0.122050) || dblAmt < 5)
+		{
+
+			wtx.hashBoinc="code";
+			printf("Setting hashboinc to code\r\n");
+
+		}
+		*/
+
+
+
         if(!uiInterface.ThreadSafeAskFee(nFeeRequired, tr("Sending...").toStdString()))
         {
             return Aborted;

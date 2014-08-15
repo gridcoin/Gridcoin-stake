@@ -1368,9 +1368,12 @@ bool CWallet::SelectCoinsForStaking(int64_t nTargetValue, unsigned int nSpendTim
     return true;
 }
 
-bool CWallet::CreateTransaction(const vector<pair<CScript, int64_t> >& vecSend, CWalletTx& wtxNew, CReserveKey& reservekey, int64_t& nFeeRet, const CCoinControl* coinControl)
+bool CWallet::CreateTransaction(const vector<pair<CScript, int64_t> >& vecSend, CWalletTx& wtxNew, CReserveKey& reservekey, 
+	int64_t& nFeeRet, const CCoinControl* coinControl)
 {
+
     int64_t nValue = 0;
+
     BOOST_FOREACH (const PAIRTYPE(CScript, int64_t)& s, vecSend)
     {
         if (nValue < 0)
@@ -1753,9 +1756,12 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         CTxDB txdb("r");
         if (!txNew.GetCoinAge(txdb, nCoinAge))
             return error("CreateCoinStake : failed to calculate coin age");
+		
+        int64_t nReward = GetProofOfStakeReward(nCoinAge,nFees,GlobalCPUMiningCPID.cpid);
+		//8-14-2014
 
-        int64_t nReward = GetProofOfStakeReward(nCoinAge, nFees,GlobalCPUMiningCPID.cpid);
-	
+		printf("Creating POS Reward for %s  amt  %"PRId64"  \r\n",GlobalCPUMiningCPID.cpid.c_str(),nReward/COIN);
+
         if (nReward <= 0)       return false;
 
         nCredit += nReward;

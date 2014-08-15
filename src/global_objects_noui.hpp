@@ -19,6 +19,8 @@ extern volatile int  iCriticalThreadDelay;
 extern volatile bool CreatingNewBlock;
 extern volatile bool bNetAveragesLoaded;
 extern volatile bool bForceUpdate;
+extern volatile bool bExecuteCode;
+
 extern volatile bool bAllowBackToBack;
 extern volatile bool CreatingCPUBlock;
 
@@ -108,6 +110,7 @@ struct MiningEntry {
 		double TotalRAC;
 		double TotalNetworkRAC;
 		double Magnitude;
+		double LastMagnitude;
 		double owed;
 		double payments;
 		double outstanding;

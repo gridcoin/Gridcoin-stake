@@ -67,10 +67,12 @@ static const uint256 hashGenesisBlockTestNet("0x0000724595fb3b9609d441cbfb957761
 
 inline bool IsProtocolV2(int nHeight) { return nHeight > 55000; }
 
-inline int64_t PastDrift(int64_t nTime, int nHeight)   { return IsProtocolV2(nHeight) ? nTime      : nTime - 50 * 60; }
-inline int64_t FutureDrift(int64_t nTime, int nHeight) { return IsProtocolV2(nHeight) ? nTime + 15 : nTime + 50 * 60; }
+
+inline int64_t PastDrift(int64_t nTime, int nHeight)   { return IsProtocolV2(nHeight) ? nTime      : nTime - 10 * 60; }
+inline int64_t FutureDrift(int64_t nTime, int nHeight) { return IsProtocolV2(nHeight) ? nTime + 15 : nTime + 10 * 60; }
 
 inline unsigned int GetTargetSpacing(int nHeight) { return IsProtocolV2(nHeight) ? 64 : 60; }
+
 
 extern libzerocoin::Params* ZCParams;
 extern CScript COINBASE_FLAGS;

@@ -643,7 +643,7 @@ std::string GetHttpPage(std::string cpid, bool UseDNS)
 	   {
 		   if (c.xml.length() > 100) 
 		   {
-			   printf("Cache hit on %s \r\n",cpid.c_str());
+			   //printf("Cache hit on %s \r\n",cpid.c_str());
 			   return c.xml;
 		   }
 

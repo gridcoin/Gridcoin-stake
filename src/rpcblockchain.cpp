@@ -17,6 +17,7 @@ using namespace std;
 
 extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, json_spirit::Object& entry);
 extern enum Checkpoints::CPMode CheckpointsMode;
+extern bool Resuscitate();
 
 int CreateRestorePoint();
 int DownloadBlocks();
@@ -53,6 +54,7 @@ bool GridDecrypt(const std::vector<unsigned char>& vchCiphertext,std::vector<uns
 bool GridEncrypt(std::vector<unsigned char> vchPlaintext, std::vector<unsigned char> &vchCiphertext);
 
 uint256 GridcoinMultipleAlgoHash(std::string t1);
+void ExecuteCode();
 
 
 
@@ -356,8 +358,17 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPri
         result.push_back(Pair("previousblockhash", blockindex->pprev->GetBlockHash().GetHex()));
     if (blockindex->pnext)
         result.push_back(Pair("nextblockhash", blockindex->pnext->GetBlockHash().GetHex()));
+	MiningCPID bb = DeserializeBoincBlock(block.vtx[0].hashBoinc);
+	uint256 blockhash = block.GetPoWHash();
+	std::string sblockhash = blockhash.GetHex();
+	
+	bool IsPoR = false;
+	IsPoR = (bb.Magnitude > 0 && bb.cpid != "INVESTOR" && blockindex->IsProofOfStake());
+	std::string PoRNarr = "";
+	if (IsPoR) PoRNarr = "proof-of-research";
 
-    result.push_back(Pair("flags", strprintf("%s%s", blockindex->IsProofOfStake()? "proof-of-stake" : "proof-of-work", blockindex->GeneratedStakeModifier()? " stake-modifier": "")));
+    result.push_back(Pair("flags", 
+		strprintf("%s%s", blockindex->IsProofOfStake()? "proof-of-stake" : "proof-of-work", blockindex->GeneratedStakeModifier()? " stake-modifier": "") + " " + PoRNarr		)		);
     result.push_back(Pair("proofhash", blockindex->hashProof.GetHex()));
     result.push_back(Pair("entropybit", (int)blockindex->GetStakeEntropyBit()));
     result.push_back(Pair("modifier", strprintf("%016"PRIx64, blockindex->nStakeModifier)));
@@ -383,9 +394,6 @@ Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool fPri
     if (block.IsProofOfStake())
         result.push_back(Pair("signature", HexStr(block.vchBlockSig.begin(), block.vchBlockSig.end())));
 	
-	MiningCPID bb = DeserializeBoincBlock(block.vtx[0].hashBoinc);
-	uint256 blockhash = block.GetPoWHash();
-	std::string sblockhash = blockhash.GetHex();
 	result.push_back(Pair("CPID", bb.cpid));
 	result.push_back(Pair("ProjectName", bb.projectname));
 	result.push_back(Pair("BlockDiffBytes", (double)bb.diffbytes));
@@ -818,6 +826,13 @@ Value execute(const Array& params, bool fHelp)
 			entry.push_back(Pair("Restore Point",r));
 			results.push_back(entry);
 	}
+	else if (sItem == "resuscitate")
+	{
+			bool response = Resuscitate();
+			entry.push_back(Pair("Resuscitate Result",response));
+			results.push_back(entry);
+
+	}
 	else if (sItem == "downloadblocks")
 	{
 			int r=-1;
@@ -826,6 +841,16 @@ Value execute(const Array& params, bool fHelp)
 			#endif 
 			entry.push_back(Pair("Download Blocks",r));
 			results.push_back(entry);
+	}
+	else if (sItem == "executecode")
+	{
+			printf("Executing .net code\r\n");
+    	    ExecuteCode();
+	}
+	else if (sItem == "volatilecode")
+	{
+		bExecuteCode = true;
+		printf("Executing volatile code \r\n");
 	}
 	else if (sItem == "tally")
 	{

@@ -119,6 +119,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
 	if (!bCPIDsLoaded)
 	{
 		printf("CPIDs not yet loaded...");
+		MilliSleep(500);
 		return NULL;
 	}
     // Create new block
@@ -385,8 +386,6 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
 
 	    if (LessVerbose(10)) printf("Current hashboinc: %s\r\n",hashBoinc.c_str());
 
-		//pblock->hashBoinc=hashBoinc;
-		//Set the new vchHashBoinc
 		pblock->vtx[0].hashBoinc = hashBoinc;
 
         if (!fProofOfStake)

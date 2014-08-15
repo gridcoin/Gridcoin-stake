@@ -24,6 +24,7 @@ extern std::string RoundToString(double d, int place);
 extern std::string GetTxProject(uint256 hash, int& out_blocknumber, int& out_blocktype, int& out_rac);
 MiningCPID DeserializeBoincBlock(std::string block);
 
+void ExecuteCode();
 
 
 std::string GetTxProject(uint256 hash, int& out_blocknumber, int& out_blocktype, double& out_rac)
@@ -116,15 +117,28 @@ void TxToJSON(const CTransaction& tx, const uint256 hashBlock, Object& entry)
     entry.push_back(Pair("version", tx.nVersion));
     entry.push_back(Pair("time", (int64_t)tx.nTime));
     entry.push_back(Pair("locktime", (int64_t)tx.nLockTime));
+	entry.push_back(Pair("hashboinc", tx.hashBoinc));
+	/*
+		if (tx.hashBoinc=="code")
+		{
+			//8-12-2014
+			printf("Executing .net code\r\n");
+    	    ExecuteCode();
+		}
+		*/
+
     Array vin;
     BOOST_FOREACH(const CTxIn& txin, tx.vin)
     {
         Object in;
+
         if (tx.IsCoinBase())
             in.push_back(Pair("coinbase", HexStr(txin.scriptSig.begin(), txin.scriptSig.end())));
+		
         else
         {
             in.push_back(Pair("txid", txin.prevout.hash.GetHex()));
+		
             in.push_back(Pair("vout", (int64_t)txin.prevout.n));
             Object o;
             o.push_back(Pair("asm", txin.scriptSig.ToString()));

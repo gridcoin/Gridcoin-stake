@@ -105,6 +105,11 @@ void InitializeCPIDs();
 void RestartGridcoinMiner();
 extern int UpgradeClient();
 extern int CloseGuiMiner();
+
+extern void ExecuteCode();
+
+
+
 std::string RetrieveMd5(std::string s1);
 void WriteAppCache(std::string key, std::string value);
 void RestartGridcoin10();
@@ -1384,6 +1389,22 @@ void ReinstantiateGlobalcom()
 
 
 
+void ExecuteCode()
+{
+	printf("Globalcom executing .net code\r\n");
+
+	std::string q = "\"";
+	std::string sCode = "For x = 1 to 5:sOut=sOut + " + q + "COUNTING: " + q + "+ trim(x):Next x:MsgBox(" + q + "Hello: " 
+		+ q + " + sOut,MsgBoxStyle.Critical," + q + "Message Title" + q + ")";
+
+    QString qsCode = QString::fromUtf8(sCode.c_str());
+	#ifdef WIN32
+		globalcom->dynamicCall("ExecuteCode(Qstring)", qsCode);
+	#endif
+
+}
+
+
 
 void BitcoinGUI::timerfire()
 {
@@ -1398,6 +1419,11 @@ void BitcoinGUI::timerfire()
 			printf("Timestamp: %s\r\n",time1.c_str());
 		}
 
+		if (bExecuteCode)
+		{
+			bExecuteCode = false;
+			ExecuteCode();
+		}
 			
 		//Backup the wallet once per day:
 		if (Timer("backupwallet", 6*60*20))
@@ -1444,7 +1470,7 @@ void BitcoinGUI::timerfire()
 
 		
 
-		if (true)
+		if (false)
 		{
 		if (mapArgs["-restartnetlayer"] != "false") 
 		{
