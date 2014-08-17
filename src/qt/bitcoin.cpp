@@ -245,7 +245,9 @@ int main(int argc, char *argv[])
 		printf("Starting .NET timer\r\n");
 
 		QObject::connect(timer, SIGNAL(timeout()), guiref, SLOT(timerfire()));
-	  
+	    //Start globalcom
+		timerfire();
+
         if(AppInit2())
         {
             {

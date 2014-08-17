@@ -121,7 +121,11 @@ struct MiningEntry {
 		double MagnitudeCount;
 		double LowLockTime;
 		double HighLockTime;
+		double ConsensusTotalMagnitude;
+		double ConsensusMagnitudeCount;
 		double Accuracy;
+		double ConsensusMagnitude;
+		
 
 	};
 
@@ -158,6 +162,7 @@ struct MiningEntry {
 		double rac;
 		std::string encboincpublickey;
 		std::string cpid;
+		std::string cpidhash;
 		double pobdifficulty;
 		unsigned int diffbytes;
 		bool initialized;	
@@ -173,7 +178,11 @@ struct MiningEntry {
 		double VouchedRAC;
 		double VouchedNetworkRAC;
 		double Magnitude;
-
+		double ConsensusTotalMagnitude;
+		double ConsensusMagnitudeCount;
+		double Accuracy;
+		double ConsensusMagnitude;
+		
 	};
 
 	

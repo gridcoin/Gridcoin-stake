@@ -1552,14 +1552,13 @@ bool CWallet::GetStakeWeight(uint64_t& nWeight)
             }
         }
     }
-	//8-10-2014
+	
 
-
-/*
-	//HALFORD: 8-5-2014
+	/*
+	//HALFORD: 8-5-2014 (Blended Stake Weight feature - On Hold)
 	if (nWeight > 0 && boincmangitude > 0)
 	{
-		int64_t magnitude_percent = boincmagnitude/100;
+		int64_t magnitude_percent = ncmagnitude/100;
 		int64_t boinc_boost = nWeight * magnitude_percent;
 		//nWeight += boinc_boost;
 	}
@@ -1757,9 +1756,8 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         if (!txNew.GetCoinAge(txdb, nCoinAge))
             return error("CreateCoinStake : failed to calculate coin age");
 		
-        int64_t nReward = GetProofOfStakeReward(nCoinAge,nFees,GlobalCPUMiningCPID.cpid);
-		//8-14-2014
-
+        int64_t nReward = GetProofOfStakeReward(nCoinAge,nFees,GlobalCPUMiningCPID.cpid,false);
+	
 		printf("Creating POS Reward for %s  amt  %"PRId64"  \r\n",GlobalCPUMiningCPID.cpid.c_str(),nReward/COIN);
 
         if (nReward <= 0)       return false;
@@ -1790,6 +1788,14 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         return error("CreateCoinStake : exceeded coinstake size limit");
 
     // Successfully generated coinstake
+	if (nCredit/COIN > 50) 
+	{
+		msMiningErrors = "POR Block Mined";
+	}
+	else
+	{
+		msMiningErrors = "POS Block Mined";
+	}
     return true;
 }
 

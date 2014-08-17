@@ -21,20 +21,18 @@ class CBlockIndex;
 class CKeyItem;
 class CReserveKey;
 class COutPoint;
-
 class CAddress;
 class CInv;
 class CRequestTracker;
 class CNode;
-
 class CTxMemPool;
-//was 1500
 
-static const int LAST_POW_BLOCK = 1500;
-static const int MAXIMUM_BOINC_SUBSIDY = 1000000;
+static const int LAST_POW_BLOCK = 1999;
+static const int MAXIMUM_BOINC_SUBSIDY = 500;
 
 /** The maximum allowed size for a serialized block, in bytes (network rule) */
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
+static const double TOLERANCE_PERCENT = 1.20;  // The amount a network consensus magnitude can be skewed by before calling Netsoft
 /** The maximum size for mined blocks */
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 /** The maximum size for transactions we're willing to relay/mine **/
@@ -126,7 +124,6 @@ extern double    	mdGPUMiningRAC;
 extern double       mdGPUMiningNetworkRAC;
 extern std::string  msGPUENCboincpublickey;
 extern std::string  msGPUboinckey;
-extern double       boincmagnitude;
 // Stats for Main Screen:
 extern double         mdLastPoBDifficulty;
 extern double         mdLastDifficulty;
@@ -155,7 +152,7 @@ bool LoadExternalBlockFile(FILE* fileIn);
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
 int64_t GetProofOfWorkReward(int64_t nFees);
-int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees, std::string cpid);
+int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees, std::string cpid, bool VerifyingBlock);
 
 unsigned int ComputeMinWork(unsigned int nBase, int64_t nTime);
 unsigned int ComputeMinStake(unsigned int nBase, int64_t nTime, unsigned int nBlockTime);

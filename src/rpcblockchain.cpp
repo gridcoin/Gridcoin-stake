@@ -18,6 +18,8 @@ using namespace std;
 extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, json_spirit::Object& entry);
 extern enum Checkpoints::CPMode CheckpointsMode;
 extern bool Resuscitate();
+bool ProjectIsValid(std::string project);
+
 
 int CreateRestorePoint();
 int DownloadBlocks();
@@ -29,6 +31,8 @@ bool AESSkeinHash(unsigned int diffbytes, double rac, uint256 scrypthash, std::s
 				  std::string aes_complex_hash(uint256 scrypt_hash);
 std::vector<std::string> split(std::string s, std::string delim);
 double Lederstrumpf(double RAC, double NetworkRAC);
+double LederstrumpfMagnitude(double mag);
+
 int TestAESHash(double rac, unsigned int diffbytes, uint256 scrypt_hash, std::string aeshash);
 std::string TxToString(const CTransaction& tx, const uint256 hashBlock, int64_t& out_amount, int64_t& out_locktime, int64_t& out_projectid, 
 	std::string& out_projectaddress, std::string& comments, std::string& out_grcaddress);
@@ -48,7 +52,7 @@ bool TallyNetworkAverages(bool ColdBoot);
 void RestartGridcoin10();
 
 std::string GetHttpPage(std::string cpid);
-std::string GetHttpPage(std::string cpid, bool usedns);
+std::string GetHttpPage(std::string cpid, bool usedns, bool clearcache);
 
 bool GridDecrypt(const std::vector<unsigned char>& vchCiphertext,std::vector<unsigned char>& vchPlaintext);
 bool GridEncrypt(std::vector<unsigned char> vchPlaintext, std::vector<unsigned char> &vchCiphertext);
@@ -57,45 +61,19 @@ uint256 GridcoinMultipleAlgoHash(std::string t1);
 void ExecuteCode();
 
 
+void CreditCheck(std::string cpid, bool clearcache);
+
+double CalculatedMagnitude();
 
 
 
 
 double GetPoBDifficulty()
 {
-
-	if (mvNetwork.size() < 1) 	
-	{
-		return 99;
-	}
-
-				StructCPID structcpid = mvNetwork["NETWORK"];
-				if (!structcpid.initialized) 
-				{
-							return 99;
-				}
-				double networkrac = structcpid.rac;
-				double networkavgrac = structcpid.AverageRAC;
-				double networkprojects = structcpid.NetworkProjects;
-				//During 14 day lookback, calculate day-blocks
-				if (networkprojects == 0) networkprojects=1;
-				double dayblocks = networkprojects/576;
-				if (dayblocks > 14)   dayblocks=14;
-				if (dayblocks < .005) 
-				{
-					if (fTestNet) 
-					{
-						dayblocks=.005;
-					}
-					else
-					{
-						dayblocks=99;
-					}
-
-				}
-				mdLastPoBDifficulty = dayblocks;
-				return dayblocks;
+	//ToDo:Retire
+	return 0;
 }
+
 
 
 
@@ -899,7 +877,7 @@ Value execute(const Array& params, bool fHelp)
 	}
 	else if (sItem == "postcpid")
 	{
-			std::string result = GetHttpPage("859038ff4a9",true);
+			std::string result = GetHttpPage("859038ff4a9",true,true);
 			entry.push_back(Pair("POST Result",result));
 	        results.push_back(entry);
 	}
@@ -963,10 +941,10 @@ Array MagnitudeReport()
 								
 								Object entry;
 								entry.push_back(Pair("CPID",structMag.cpid));
-								entry.push_back(Pair("Magnitude",structMag.Magnitude));
+								entry.push_back(Pair("Magnitude",structMag.ConsensusMagnitude));
 								entry.push_back(Pair("Magnitude Accuracy",structMag.Accuracy));
 								entry.push_back(Pair("Payments",structMag.payments));
-								entry.push_back(Pair("Owed",structMag.outstanding));
+								entry.push_back(Pair("Owed",structMag.owed));
 								entry.push_back(Pair("Avg Daily Payments",structMag.payments/14));
 								results.push_back(entry);
 
@@ -975,6 +953,12 @@ Array MagnitudeReport()
 			}
 		
 			return results;
+}
+
+std::string YesNo(bool bin)
+{
+	if (bin) return "Yes";
+	return "No";
 }
 
 Value listitem(const Array& params, bool fHelp)
@@ -999,7 +983,15 @@ Value listitem(const Array& params, bool fHelp)
 	e2.push_back(Pair("Command",sitem));
 	results.push_back(e2);
 
-
+	if (sitem=="creditcheck")
+	{
+			Object entry;
+	
+			CreditCheck(GlobalCPUMiningCPID.cpid,true);
+			double boincmagnitude = CalculatedMagnitude();
+			entry.push_back(Pair("Magnitude",boincmagnitude));
+			results.push_back(entry);
+	}
 	if (sitem == "explainmagnitude")
 	{
 
@@ -1020,21 +1012,25 @@ Value listitem(const Array& params, bool fHelp)
 	        if (structcpid.initialized) 
 			{ 
 				
-				if (structcpid.projectname.length() > 2)
+				bool projectvalid = ProjectIsValid(structcpid.projectname);
+				
+				if (structcpid.projectname.length() > 2 && projectvalid)
 				{
 				double ProjectRAC = GetNetworkAvgByProject(structcpid.projectname);
 				
 				bool cpidDoubleCheck = IsCPIDValid(structcpid.cpid,structcpid.boincpublickey);
-				bool including = (ProjectRAC > 1 && structcpid.rac > 100 && structcpid.Iscpidvalid && cpidDoubleCheck && structcpid.verifiedrac > 100);
+				bool including = (ProjectRAC > 0 && structcpid.Iscpidvalid && cpidDoubleCheck && structcpid.verifiedrac > 100);
 				std::string narr = "";
-				
+				std::string narr_desc = "";
+				narr_desc = "NetRac: " + RoundToString(ProjectRAC,0) + ", CPIDValid: " + YesNo(structcpid.Iscpidvalid) + ", VerifiedRAC: " +RoundToString(structcpid.verifiedrac,0);
+
 				if (including) 
 				{ 
-					narr="Enumerating";
+					narr="Enumerating " + narr_desc;
 				} 
 				else 
 				{
-					narr = "Skipping";
+					narr = "Skipping " + narr_desc;
 				}
 
 				if (structcpid.projectname.length() > 1)
@@ -1042,11 +1038,9 @@ Value listitem(const Array& params, bool fHelp)
 
 					entry.push_back(Pair(narr + " Project",structcpid.projectname));
 				}
-				if (ProjectRAC > 1 && structcpid.rac > 100 && structcpid.Iscpidvalid && cpidDoubleCheck && structcpid.verifiedrac > 100)
+				if (ProjectRAC > 0 && structcpid.Iscpidvalid && cpidDoubleCheck && structcpid.verifiedrac > 100)
 				{
 
-					if (ProjectRAC > 100)
-					{
 						projpct = structcpid.verifiedrac/(ProjectRAC+.01);
 						nettotalrac = nettotalrac + ProjectRAC;
 						mytotalrac = mytotalrac + structcpid.verifiedrac;
@@ -1055,17 +1049,11 @@ Value listitem(const Array& params, bool fHelp)
 						double project_magnitude = structcpid.verifiedrac/(ProjectRAC+.01) * 100;
 						TotalMagnitude = TotalMagnitude + project_magnitude;
 						Mag = (TotalMagnitude/myprojects);
-						entry.push_back(Pair("Projects",myprojects));
-
-						entry.push_back(Pair("Project Verified RAC",structcpid.verifiedrac));
+						entry.push_back(Pair("Project Count",myprojects));
+						entry.push_back(Pair("User Project Verified RAC",structcpid.verifiedrac));
 						entry.push_back(Pair("Network RAC",ProjectRAC));
 						entry.push_back(Pair("Project Magnitude",project_magnitude));
-						
-
 						entry.push_back(Pair("Project-User Magnitude",Mag));
-
-
-					}
 				}
 			  }
 			}
@@ -1112,14 +1100,14 @@ Value listitem(const Array& params, bool fHelp)
 	if (sitem == "leder")
 	{
 		
-		double subsidy = Lederstrumpf(1000,1000);
+		double subsidy = LederstrumpfMagnitude(450);
 		Object entry;
-		entry.push_back(Pair("Subsidy",subsidy));
+		entry.push_back(Pair("Mag Out For 450",subsidy));
 		if (args.length() > 1)
 		{
 			double myrac=cdbl(args,0);
-			subsidy = Lederstrumpf(myrac,1000);
-			entry.push_back(Pair("Subsidy",subsidy));
+			subsidy = LederstrumpfMagnitude(myrac);
+			entry.push_back(Pair("Mag Out",subsidy));
 		}
 		results.push_back(entry);
 

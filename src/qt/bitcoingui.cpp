@@ -494,8 +494,6 @@ void BitcoinGUI::createActions()
 
 
 
-	//6-6-2014 : R Halford : Add Upgrade Button 
-
 	upgradeAction = new QAction(QIcon(":/icons/bitcoin"), tr("&Upgrade QT Client"), this);
 	upgradeAction->setStatusTip(tr("Upgrade QT Client"));
 	upgradeAction->setMenuRole(QAction::TextHeuristicRole);
@@ -1100,6 +1098,76 @@ std::string RetrieveBlocksAsString(int lSqlBlock)
 
 
 
+void BitcoinGUI::rebuildClicked()
+{
+	printf("Rebuilding...");
+	ReindexBlocks();
+}
+
+
+void BitcoinGUI::upgradeClicked()
+{
+	printf("Upgrading Gridcoin...");
+	UpgradeClient();
+	
+}
+
+void BitcoinGUI::downloadClicked()
+{
+	DownloadBlocks();
+
+}
+
+void BitcoinGUI::sqlClicked()
+{
+#ifdef WIN32
+
+	if (!globalcom) 
+	{
+		globalcom = new QAxObject("Boinc.Utilization");
+	}
+    
+    globalcom->dynamicCall("ShowSql()");
+
+#endif
+
+}
+
+void BitcoinGUI::leaderboardClicked()
+{
+	#ifdef WIN32
+
+	if (globalcom==NULL) {
+		globalcom = new QAxObject("Boinc.Utilization");
+	}
+    
+    globalcom->dynamicCall("ShowLeaderboard()");
+#endif
+}
+
+
+int ReindexBlocks()
+{
+
+	int result = ReindexWallet();
+	return 1;
+		
+}
+
+
+void BitcoinGUI::miningClicked()
+{
+		
+#ifdef WIN32
+
+	if (globalcom==NULL) {
+		globalcom = new QAxObject("Boinc.Utilization");
+	}
+    
+      globalcom->dynamicCall("ShowMiningConsole()");
+#endif
+}
+
 
 
 void BitcoinGUI::gotoOverviewPage()
@@ -1370,8 +1438,11 @@ void ReinstantiateGlobalcom()
 			}
 			else
 			{
-					globalcom = new QAxObject("Boinc.Utilization");
 					printf("Instantiating globalcom for Windows");
+		
+					globalcom = new QAxObject("Boinc.Utilization");
+								printf("Instantiated globalcom for Windows");
+		
 			}
 		
 		    //	globalcom->dynamicCall("ShowMiningConsole()");
@@ -1436,14 +1507,14 @@ void BitcoinGUI::timerfire()
 			printf("Created restore point : %i",r);
 		}
 
-		if (Timer("start",1))
+		if (nRegVersion==0 || Timer("start",10))
 		{
+			printf("Starting globalcom...\r\n");
 			#ifdef WIN32
 			if (globalcom==NULL) ReinstantiateGlobalcom();
 			nRegVersion = globalcom->dynamicCall("Version()").toInt();
 			sRegVer = boost::lexical_cast<std::string>(nRegVersion);
 			#endif
-			
 		}
 
 		
@@ -1457,14 +1528,8 @@ void BitcoinGUI::timerfire()
 
 		if (Timer("update_boinc_magnitude", 6*10))
 		{
-				double POB = GetPoBDifficulty();
+				//double POB = GetPoBDifficulty();
 				TallyNetworkAverages(false);
-			
-				QString bm = QString::fromUtf8(RoundToString(boincmagnitude,2).c_str());
-				nBoincUtilization = (int)boincmagnitude;
-				#ifdef WIN32
-				globalcom->dynamicCall("BoincMagnitude(Qstring)", bm);
-				#endif
 		}
    
 
@@ -1483,13 +1548,13 @@ void BitcoinGUI::timerfire()
 		}
 
 
-        if (false)
+        if (true)
 		{
-		if (Timer("gather_cpids",10000))
-		{
-			printf("\r\nReharvesting cpids in background thread...\r\n");
-		   LoadCPIDsInBackground();
-		}
+			if (Timer("gather_cpids",6*30))
+			{
+				printf("\r\nReharvesting cpids in background thread...\r\n");
+				LoadCPIDsInBackground();
+			}
 		}
 
 		if (false)
@@ -1501,7 +1566,7 @@ void BitcoinGUI::timerfire()
 					//Upload the current block to the GVM
 					//printf("Ready to sync SQL...\r\n");
      				//QString lbh = QString::fromUtf8(hashBestChain.ToString().c_str()); 
-	  			//Retrieve SQL high block number:
+	  			    //Retrieve SQL high block number:
 					int iSqlBlock = 0;
 					iSqlBlock = globalcom->dynamicCall("RetrieveSqlHighBlock()").toInt();
      				//Send Gridcoin block to SQL:
@@ -1545,10 +1610,12 @@ std::string tostdstring(QString q)
 
 void BitcoinGUI::detectShutdown()
 {
-
+	//Note: This routine is used in Litecoin but not Peercoin
+	/*
 	 // Tell the main threads to shutdown.
      if (ShutdownRequested())
         QMetaObject::invokeMethod(QCoreApplication::instance(), "quit", Qt::QueuedConnection);
+		*/
 }
 
 

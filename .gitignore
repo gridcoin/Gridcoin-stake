@@ -12,9 +12,17 @@ release
 *.rej
 *.orig
 *.o
+*.pdb
 *.patch
 *.pgp
 *.gpg
+*.exe
+*.dll
+*.cache
+*.user
+*.force
+*.suo
+*.scc
 GridcoinStake.zip
 .gridcoin
 .gridcoinstake

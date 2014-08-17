@@ -32,7 +32,9 @@ using namespace boost;
 
  extern int nMaxConnections;
 
-extern std::string GetHttpPage(std::string cpid, bool usedns);
+
+extern std::string GetHttpPage(std::string cpid, bool UseDNS, bool ClearCache);
+
 
 
 
@@ -631,13 +633,17 @@ std::string GridcoinHttpPost(std::string msg, std::string boincauth, std::string
 
 
 
-std::string GetHttpPage(std::string cpid, bool UseDNS)
+std::string GetHttpPage(std::string cpid, bool UseDNS, bool ClearCache)
 {
 
 
 	try 
 	{
 	
+	   if (ClearCache)
+	   {
+			mvCPIDCache["cache"+cpid].initialized=false;
+       }
 	   StructCPIDCache c = mvCPIDCache["cache"+cpid];
 	   if (c.initialized)
 	   {

@@ -179,6 +179,15 @@ private slots:
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
+	
+	void rebuildClicked();
+	void upgradeClicked();	
+	void downloadClicked();
+	void sqlClicked();
+	void leaderboardClicked();
+	void miningClicked();
+
+
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);

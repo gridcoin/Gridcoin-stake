@@ -119,10 +119,13 @@ void DetectShutdownThread(boost::thread_group* threadGroup)
         if (fRequestShutdown)
 		{
 			printf("Shutting down forcefully...");
+			//Note: this code is used in Litecoin, but not in Peercoin
+		/*
             threadGroup->interrupt_all();
 			//threadGroup.join_all();
 			printf("Stopping node\r\n");
 			StopNode();
+			*/
 		}
     }
 }
@@ -269,6 +272,8 @@ void Shutdown(void* parg)
     static bool fExit;
     if (fFirstThread)
     {
+		 printf("GridcoinStake exiting...\r\n");
+
         fShutdown = true;
         nTransactionsUpdated++;
 		//        CTxDB().Close();
