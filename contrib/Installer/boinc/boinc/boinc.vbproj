@@ -9,8 +9,8 @@
     </SchemaVersion>
     <ProjectGuid>{359913F7-DF2D-4632-9A0C-52E9FD0D4ED9}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>boinc</RootNamespace>
-    <AssemblyName>boinc</AssemblyName>
+    <RootNamespace>boincstake</RootNamespace>
+    <AssemblyName>boincstake</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>boinc.xml</DocumentationFile>
+    <DocumentationFile>boincstake.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <RegisterForComInterop>true</RegisterForComInterop>
     <PlatformTarget>x86</PlatformTarget>
@@ -33,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\..\release\</OutputPath>
-    <DocumentationFile>boinc.xml</DocumentationFile>
+    <DocumentationFile>boincstake.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <RegisterForComInterop>true</RegisterForComInterop>
     <PlatformTarget>x86</PlatformTarget>

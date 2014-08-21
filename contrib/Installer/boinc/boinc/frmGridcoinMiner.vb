@@ -203,8 +203,7 @@ Public Class frmGridcoinMiner
             Dim lTC As Long = KeyValue("dev" + Trim(lDevId) + "_gpu_thread_concurrency")
 
             Dim sResult As String
-            sResult = WriteCgMinerFile(lDevId, sPort, sUser, sPass, lIntensity, lWS, lLG, lTC, sCGPath)
-            MsgBox(sResult, vbInformation, "Result")
+             MsgBox(sResult, vbInformation, "Result")
 
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical, "Error while creating Cg Miner Instance")

@@ -246,7 +246,6 @@ int main(int argc, char *argv[])
 
 		QObject::connect(timer, SIGNAL(timeout()), guiref, SLOT(timerfire()));
 	    //Start globalcom
-		timerfire();
 
         if(AppInit2())
         {

@@ -39,7 +39,7 @@ Partial Class GridcoinUpgrader
         Me.ProgressBar1.MarqueeAnimationSpeed = 11
         Me.ProgressBar1.Maximum = 1000
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(947, 10)
+        Me.ProgressBar1.Size = New System.Drawing.Size(922, 10)
         Me.ProgressBar1.Step = 5
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee
         Me.ProgressBar1.TabIndex = 0
@@ -66,7 +66,7 @@ Partial Class GridcoinUpgrader
         Me.lblPercent.AutoSize = True
         Me.lblPercent.BackColor = System.Drawing.Color.Transparent
         Me.lblPercent.Font = New System.Drawing.Font("Trebuchet MS", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPercent.Location = New System.Drawing.Point(619, 22)
+        Me.lblPercent.Location = New System.Drawing.Point(505, 21)
         Me.lblPercent.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblPercent.Name = "lblPercent"
         Me.lblPercent.Size = New System.Drawing.Size(40, 29)
@@ -75,11 +75,12 @@ Partial Class GridcoinUpgrader
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.BackgroundImage = Global.GRCRestarter.My.Resources.Resources.gridcoin_horizontal
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(666, -3)
+        Me.PictureBox1.Location = New System.Drawing.Point(537, -20)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(301, 54)
+        Me.PictureBox1.Size = New System.Drawing.Size(414, 96)
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
@@ -87,18 +88,19 @@ Partial Class GridcoinUpgrader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.Black
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ClientSize = New System.Drawing.Size(904, 66)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.BackgroundImage = Global.GRCRestarter.My.Resources.Resources.GradientB
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(888, 68)
         Me.Controls.Add(Me.lblPercent)
         Me.Controls.Add(Me.txtStatus)
         Me.Controls.Add(Me.ProgressBar1)
+        Me.Controls.Add(Me.PictureBox1)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Monotype Corsiva", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "GridcoinUpgrader"

@@ -1,5 +1,5 @@
 ﻿
-Imports boinc
+Imports BoincStake
 
 Imports System.Net.HttpWebRequest
 Imports System.Text
@@ -48,12 +48,12 @@ Public Class Form1
         req.ConnectionGroupName = groupName
         Try
 
-        Using resp As WebResponse = req.GetResponse()
-        End Using
-        sp.CloseConnectionGroup(groupName)
-        Dim key As Byte() = sp.Certificate.GetPublicKey()
-        Dim sOut As String
-        sOut = ByteArrayToHexString(key)
+            Using resp As WebResponse = req.GetResponse()
+            End Using
+            sp.CloseConnectionGroup(groupName)
+            Dim key As Byte() = sp.Certificate.GetPublicKey()
+            Dim sOut As String
+            sOut = ByteArrayToHexString(key)
             Return sOut
         Catch ex As Exception
             'Usually due to either HTTP, 501, Not Implemented...etc.
@@ -101,11 +101,13 @@ Public Class Form1
 
 
 
-        Dim x As New boinc.Utilization
-        Dim sCode As String = "For x = 1 to 5:sOut=sOut + \r\nCOUNTING: " + Chr(34) + "+ trim(x):Next x:MsgBox(" + Chr(34) + "Hello: " + Chr(34) + " + sOut,MsgBoxStyle.Critical," + Chr(34) + "Message Title" + Chr(34) + ")"
+        Dim x As New BoincStake.Utilization
+        Dim vv As Integer
+        vv = x.Version
 
-        x.ExecuteCode(sCode)
+        Stop
 
+       
         'Test AES 512 in .NET:
         Dim sNonEncHash As String = "12345"
         Dim sEncHash As String = ""
@@ -149,7 +151,7 @@ Public Class Form1
             sOutPath = Replace(di.FullName, "-master", "-white")
 
         End If
-      
+
         Dim outfile As New StreamWriter(sOutPath)
         Dim text As String
         Dim sBackupPath As String = "c:\gridcoin-master\src\qcolorbackup\"

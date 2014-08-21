@@ -187,7 +187,7 @@ bool RecvLine2(SOCKET hSocket, string& strLine)
         int nBytes = recv(hSocket, &c, 1, 0);
 
 		clock_t end = clock();
-		double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+		double elapsed_secs = double(end - begin) / (CLOCKS_PER_SEC+.01);
 		if (elapsed_secs > 14) return true;
 			
         if (nBytes > 0)
@@ -213,7 +213,7 @@ bool RecvLine2(SOCKET hSocket, string& strLine)
                 {
                     MilliSleep(50);
 					clock_t end = clock();
-					double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+					double elapsed_secs = double(end - begin) / (CLOCKS_PER_SEC+.01);
 		
 					if (elapsed_secs > 14) return true;
 		
@@ -498,7 +498,7 @@ std::string GetHttpContent(const CService& addrConnect, std::string getdata)
 				MilliSleep(155);
 				timeout=timeout+222;
   			    clock_t end = clock();
-				double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+				double elapsed_secs = double(end - begin) / (CLOCKS_PER_SEC+.01);
 				if (timeout > 14000) break;
 				if (elapsed_secs > 14) break;
 			    if (strLine.find("<END>") != string::npos) break;
@@ -640,6 +640,12 @@ std::string GetHttpPage(std::string cpid, bool UseDNS, bool ClearCache)
 	try 
 	{
 	
+		 if (cpid=="" || cpid.length() < 5)
+		 {
+				printf("Blank cpid supplied");
+				return "";
+		 }
+
 	   if (ClearCache)
 	   {
 			mvCPIDCache["cache"+cpid].initialized=false;

@@ -619,7 +619,7 @@ Partial Class frmMining
         '
         'GroupBox4
         '
-        Me.GroupBox4.BackgroundImage = Global.boinc.My.Resources.Resources.gradient
+        Me.GroupBox4.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient
         Me.GroupBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GroupBox4.Location = New System.Drawing.Point(640, 6)
         Me.GroupBox4.Name = "GroupBox4"
@@ -631,7 +631,7 @@ Partial Class frmMining
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox3.BackgroundImage = Global.boinc.My.Resources.Resources.gradient753
+        Me.GroupBox3.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient753
         Me.GroupBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.GroupBox3.Controls.Add(Me.RichTextBox1)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -655,7 +655,7 @@ Partial Class frmMining
         '
         'GroupBox2
         '
-        Me.GroupBox2.BackgroundImage = Global.boinc.My.Resources.Resources.gradient
+        Me.GroupBox2.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient
         Me.GroupBox2.Controls.Add(Me.ChartHashRate)
         Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GroupBox2.Location = New System.Drawing.Point(344, 6)
@@ -688,7 +688,7 @@ Partial Class frmMining
         '
         'GroupBox1
         '
-        Me.GroupBox1.BackgroundImage = Global.boinc.My.Resources.Resources.gradient
+        Me.GroupBox1.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient
         Me.GroupBox1.Controls.Add(Me.chkCGMonitor)
         Me.GroupBox1.Controls.Add(Me.lblCGMessage)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -847,7 +847,7 @@ Partial Class frmMining
         '
         'pbCgminer
         '
-        Me.pbCgminer.BackgroundImage = Global.boinc.My.Resources.Resources.gradient
+        Me.pbCgminer.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient
         Me.pbCgminer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pbCgminer.Location = New System.Drawing.Point(0, 1)
         Me.pbCgminer.Name = "pbCgminer"
@@ -868,7 +868,7 @@ Partial Class frmMining
         '
         'Pb1
         '
-        Me.Pb1.BackgroundImage = Global.boinc.My.Resources.Resources.gradient
+        Me.Pb1.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient
         Me.Pb1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Pb1.Location = New System.Drawing.Point(-4, -4)
         Me.Pb1.Name = "Pb1"
@@ -942,7 +942,7 @@ Partial Class frmMining
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.BackgroundImage = Global.boinc.My.Resources.Resources.GradientU
+        Me.BackgroundImage = Global.BoincStake.My.Resources.Resources.GradientU
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(940, 793)
         Me.Controls.Add(Me.msBlockHeight)

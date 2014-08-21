@@ -135,7 +135,7 @@ Partial Class frmSQL
         '
         'btnExec
         '
-        Me.btnExec.BackgroundImage = Global.boinc.My.Resources.Resources.gradient75
+        Me.btnExec.BackgroundImage = Global.BoincStake.My.Resources.Resources.gradient75
         Me.btnExec.ForeColor = System.Drawing.Color.Lime
         Me.btnExec.Location = New System.Drawing.Point(890, 5)
         Me.btnExec.Name = "btnExec"

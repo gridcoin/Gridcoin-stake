@@ -128,6 +128,7 @@ void DetectShutdownThread(boost::thread_group* threadGroup)
 			*/
 		}
     }
+	printf("Shutdown thread ended.");
 }
 
 

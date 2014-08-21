@@ -126,9 +126,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\boinc\boinc\boinc.vbproj">
+    <ProjectReference Include="..\..\boinc\boinc\boincstake.vbproj">
       <Project>{359913F7-DF2D-4632-9A0C-52E9FD0D4ED9}</Project>
-      <Name>boinc</Name>
+      <Name>boincstake</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

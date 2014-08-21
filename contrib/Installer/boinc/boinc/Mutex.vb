@@ -9,7 +9,7 @@ Public Class SharedMemory
     Private _mmfpath As String
     Public Function GetGridPath(ByVal sType As String) As String
         Dim sTemp As String
-        sTemp = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\Gridcoin\" + sType
+        sTemp = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\GridcoinStake\" + sType
         If System.IO.Directory.Exists(sTemp) = False Then
             Try
                 System.IO.Directory.CreateDirectory(sTemp)

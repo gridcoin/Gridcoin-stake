@@ -191,7 +191,6 @@ double GetNetworkAvgByProject(std::string projectname);
 extern bool IsCPIDValid(std::string cpid, std::string ENCboincpubkey);
 extern void FindMultiAlgorithmSolution(CBlock* pblock, uint256 hash, uint256 hashTaget, double miningrac);
 
-extern bool CheckProofOfBoinc(CBlock* pblock, bool bOKToBeInChain, bool ConnectingBlock = false);
 extern std::string getfilecontents(std::string filename);
 extern std::string ToOfficialName(std::string proj);
 extern bool LessVerbose(int iMax1000);
@@ -418,6 +417,12 @@ double GetPoSKernelPS2()
 
 std::string GetGlobalStatus()
 {
+	
+
+	//8-18-2014
+
+	try
+	{
 	std::string status = "";
 	double boincmagnitude = CalculatedMagnitude();
 	uint64_t nWeight = 0;
@@ -431,6 +436,20 @@ std::string GetGlobalStatus()
 
 	msGlobalStatus = status;
 	return status;
+	}
+	catch (std::exception& e)
+	{
+			msMiningErrors = "Error obtaining status.";
+
+			printf("Error obtaining status\r\n");
+			return "";
+		}
+		catch(...)
+		{
+			msMiningErrors = "Error obtaining status (08-18-2014).";
+			return "";
+		}
+	
 }
 
 
@@ -554,7 +573,8 @@ MiningCPID GetNextProject()
 	GlobalCPUMiningCPID.pobdifficulty = 0;
 	GlobalCPUMiningCPID.diffbytes = 0;
 
-	
+	printf("Precalculating...");
+
 	if (IsInitialBlockDownload() || !bCPIDsLoaded) 
 	{
 		    printf("CPUMiner: Gridcoin is downloading blocks Or CPIDs are not yet loaded...");
@@ -562,11 +582,20 @@ MiningCPID GetNextProject()
 			return GlobalCPUMiningCPID;
 	}
 		
+	printf("qq1.");
 
 	try 
 	{
 	
-		if (mvCPIDs.size() < 1) return GlobalCPUMiningCPID;
+		if (mvCPIDs.size() < 1)
+		{
+			printf("Gridcoin has no CPIDs...");
+
+			//	return GlobalCPUMiningCPID;
+			//Let control reach the investor area
+
+		}
+
 		int iValidProjects=0;
 		//Count valid projects:
 		for(map<string,StructCPID>::iterator ii=mvCPIDs.begin(); ii!=mvCPIDs.end(); ++ii) 
@@ -587,11 +616,13 @@ MiningCPID GetNextProject()
 		int iDistributedProject = 0;
 		int iRow = 0;
 
-		
+		if (iValidProjects > 0)
+		{
 		for (int i = 0; i <= 3;i++)
 		{
 			iRow=0;
 			iDistributedProject = (rand() % iValidProjects)+1;
+
 		
 			for(map<string,StructCPID>::iterator ii=mvCPIDs.begin(); ii!=mvCPIDs.end(); ++ii) 
 			{
@@ -611,7 +642,8 @@ MiningCPID GetNextProject()
 								msMiningCPID = structcpid.cpid;
 								mdMiningRAC = structcpid.verifiedrac;
 								msENCboincpublickey = structcpid.boincpublickey;
-								if (LessVerbose(50)) printf("Ready to CPU Mine project %s     RAC(%f)  enc %s\r\n",structcpid.projectname.c_str(),structcpid.rac, msENCboincpublickey.c_str());
+								if (LessVerbose(50)) printf("Ready to CPU Mine project %s     RAC(%f)  enc %s\r\n",
+									structcpid.projectname.c_str(),structcpid.rac, msENCboincpublickey.c_str());
 								//Required for project to be mined in a block:
 								GlobalCPUMiningCPID.initialized = true;
 								GlobalCPUMiningCPID.cpid=structcpid.cpid;
@@ -637,6 +669,7 @@ MiningCPID GetNextProject()
 			}
 
 		}
+		}
 
 		msMiningErrors = "All CPU projects exhausted.";
 		msMiningProject = "INVESTOR";
@@ -654,7 +687,8 @@ MiningCPID GetNextProject()
 		GlobalCPUMiningCPID.NetworkRAC =0;
 		GlobalCPUMiningCPID.Magnitude = 0;
 		mdMiningNetworkRAC = 0;
-	
+	    printf("User is an investor");
+
 
      	}
 		catch (std::exception& e)
@@ -2450,7 +2484,8 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
 				if (nStakeReward > (nCalculatedResearch*TOLERANCE_PERCENT))
 				{
 		
-					return DoS(10, error("ConnectBlock() : Researchers Reward for CPID %s pays too much(actual=%"PRId64" vs calculated=%"PRId64")", bb.cpid.c_str(),
+					return DoS(10, error("ConnectBlock() : Researchers Reward for CPID %s pays too much(actual=%"PRId64" vs calculated=%"PRId64")", 
+						bb.cpid.c_str(),
 						nStakeReward/COIN, nCalculatedResearch/COIN));
 				}
 			}
@@ -3888,7 +3923,7 @@ void AddWeightedMagnitude(double LockTime,StructCPID &structMagnitude,double mag
 	structMagnitude.ConsensusTotalMagnitude = structMagnitude.ConsensusTotalMagnitude + (magnitude_level*weight);
 	structMagnitude.ConsensusMagnitudeCount=structMagnitude.ConsensusMagnitudeCount + weight;
 	structMagnitude.Accuracy++;
-	structMagnitude.ConsensusMagnitude = (structMagnitude.ConsensusTotalMagnitude/(structMagnitude.ConsensusMagnitudeCount));
+	structMagnitude.ConsensusMagnitude = (structMagnitude.ConsensusTotalMagnitude/(structMagnitude.ConsensusMagnitudeCount+.01));
 }
 
 void AddNetworkMagnitude(double LockTime, std::string cpid, MiningCPID bb, double mint, bool IsStake)
@@ -3937,7 +3972,7 @@ void AddNetworkMagnitude(double LockTime, std::string cpid, MiningCPID bb, doubl
 			AddWeightedMagnitude(LockTime,structMagnitude,bb.Magnitude);
 		}
 
-		structMagnitude.AverageRAC = structMagnitude.rac / structMagnitude.entries;
+		structMagnitude.AverageRAC = structMagnitude.rac / (structMagnitude.entries+.01);
 		if (LockTime < globalMag.LowLockTime)  globalMag.LowLockTime=LockTime;
 		if (LockTime > globalMag.HighLockTime) globalMag.HighLockTime = LockTime;
 		//mvMagnitudes[cpid] = structMagnitude;
@@ -3957,6 +3992,7 @@ bool TallyNetworkAverages(bool ColdBoot)
 {
 	//Iterate throught last 14 days, tally network averages
     if (nBestHeight < 15) return false;
+	printf("Gathering network avgs\r\n");
 
 	try 
 	{
@@ -4011,7 +4047,10 @@ bool TallyNetworkAverages(bool ColdBoot)
 							NetworkRAC = NetworkRAC + bb.rac;
 							structcpid.TotalRAC = NetworkRAC;
 							structcpid.entries++;
-							structcpid.AverageRAC = structcpid.rac / structcpid.entries;
+							if (structcpid.entries > 0)
+							{
+									structcpid.AverageRAC = structcpid.rac / (structcpid.entries+.01);
+							}
 							mvNetwork[proj] = structcpid;
 
 							//Insert Global Project+CPID Stats:
@@ -4029,7 +4068,10 @@ bool TallyNetworkAverages(bool ColdBoot)
 							structnetcpidproject.cpid = cpid;
 							structnetcpidproject.rac = structnetcpidproject.rac + bb.rac;
 							structnetcpidproject.entries++;
-							structnetcpidproject.AverageRAC = structnetcpidproject.rac/structnetcpidproject.entries;
+							if (structnetcpidproject.entries > 0)
+							{
+								structnetcpidproject.AverageRAC = structnetcpidproject.rac/(structnetcpidproject.entries+.01);
+							}
 							mvNetworkCPIDs[projcpid] = structnetcpidproject;
 							// Insert CPID, Magnitude, Payments
 							AddNetworkMagnitude(block.nTime,cpid,bb,mint,pblockindex->IsProofOfStake());
@@ -4039,7 +4081,10 @@ bool TallyNetworkAverages(bool ColdBoot)
 						}
 					}
 					double NetworkAvg = 0;
-					NetworkAvg = NetworkRAC/iRow+.01;
+					if (iRow > 0)
+					{
+						NetworkAvg = NetworkRAC/(iRow+.01);
+					}
 	
 					printf("Assimilating network consensus..");
 
@@ -5708,7 +5753,7 @@ void CreditCheck(std::string cpid, bool clearcache)
 							project_magnitude=structc.verifiedrac/(projavg) * 100;
 							structc.TotalMagnitude = structc.TotalMagnitude + project_magnitude;
 							structc.MagnitudeCount++;
-							structc.Magnitude = (structc.TotalMagnitude/structc.MagnitudeCount);
+							structc.Magnitude = (structc.TotalMagnitude/(structc.MagnitudeCount+.01));
 							mvCreditNodeCPID[cpid]=structc;
 							printf("Adding magnitude for project %s : ProjectAvgRAC %f, User RAC %f, new Magnitude %f\r\n",
 								sProj.c_str(),
@@ -6068,8 +6113,12 @@ void ThreadCPIDs()
 	HarvestCPIDs(true);
 	bCPIDsLoaded = true;
 	//Reloads maglevel:
+	printf("Performing 1st credit check");
 	CreditCheck(GlobalCPUMiningCPID.cpid,true);
+	printf("Getting first project");
 	GetNextProject();
+	printf("Finished getting first project");
+
 }
 
 

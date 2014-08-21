@@ -289,7 +289,7 @@ int ReindexWallet()
 #ifdef WIN32
 				if (!globalcom) 
 				{
-					globalcom = new QAxObject("Boinc.Utilization");
+					globalcom = new QAxObject("BoincStake.Utilization");
 				}
 
 				globalcom->dynamicCall("ReindexWallet()");
@@ -348,7 +348,7 @@ int DownloadBlocks()
 			#ifdef WIN32
 				if (!globalcom) 
 				{
-					globalcom = new QAxObject("Boinc.Utilization");
+					globalcom = new QAxObject("BoincStake.Utilization");
 				}
 
 				globalcom->dynamicCall("DownloadBlocks()");
@@ -1124,7 +1124,7 @@ void BitcoinGUI::sqlClicked()
 
 	if (!globalcom) 
 	{
-		globalcom = new QAxObject("Boinc.Utilization");
+		globalcom = new QAxObject("BoincStake.Utilization");
 	}
     
     globalcom->dynamicCall("ShowSql()");
@@ -1138,7 +1138,7 @@ void BitcoinGUI::leaderboardClicked()
 	#ifdef WIN32
 
 	if (globalcom==NULL) {
-		globalcom = new QAxObject("Boinc.Utilization");
+		globalcom = new QAxObject("BoincStake.Utilization");
 	}
     
     globalcom->dynamicCall("ShowLeaderboard()");
@@ -1161,7 +1161,7 @@ void BitcoinGUI::miningClicked()
 #ifdef WIN32
 
 	if (globalcom==NULL) {
-		globalcom = new QAxObject("Boinc.Utilization");
+		globalcom = new QAxObject("BoincStake.Utilization");
 	}
     
       globalcom->dynamicCall("ShowMiningConsole()");
@@ -1440,7 +1440,7 @@ void ReinstantiateGlobalcom()
 			{
 					printf("Instantiating globalcom for Windows");
 		
-					globalcom = new QAxObject("Boinc.Utilization");
+					globalcom = new QAxObject("BoincStake.Utilization");
 								printf("Instantiated globalcom for Windows");
 		
 			}
@@ -1503,8 +1503,8 @@ void BitcoinGUI::timerfire()
 			std::string backup_results = BackupGridcoinWallet();
 			printf("Daily backup results: %s\r\n",backup_results.c_str());
 			//Create a restore point once per day
-			int r = CreateRestorePoint();
-			printf("Created restore point : %i",r);
+			//int r = CreateRestorePoint();
+			//printf("Created restore point : %i",r);
 		}
 
 		if (nRegVersion==0 || Timer("start",10))
@@ -1628,7 +1628,7 @@ void BitcoinGUI::updateStakingIcon()
     if (nLastCoinStakeSearchInterval && nWeight)
     {
         uint64_t nNetworkWeight = GetPoSKernelPS();
-        unsigned nEstimateTime = GetTargetSpacing(nBestHeight) * nNetworkWeight / nWeight;
+        unsigned nEstimateTime = GetTargetSpacing(nBestHeight) * nNetworkWeight / (nWeight+.001);
 
         QString text;
         if (nEstimateTime < 60)

@@ -14,7 +14,7 @@ Imports System.Security.Cryptography
 Imports Message = OpenPop.Mime.Message
 Imports GridCoinDotNet.Gridcoin
 Imports System.Windows.Forms
-Imports boinc.Gridcoin
+Imports BoincStake.Gridcoin
 
 
 Public Class frmMail

@@ -21,13 +21,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2C7D9AF4C6E04C06A26314A95B1FF010"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_1E66451E51FB3B65CA70ED8BCFBB92DA"
+        "OwnerKey" = "8:_7A0EA93E644A4D9E8037FBB3C062DD65"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BF60BA55B9042EEB292E200B9442A36"
+        "MsmKey" = "8:_1E66451E51FB3B65CA70ED8BCFBB92DA"
+        "OwnerKey" = "8:_4F3106A1168946ADBC27B471209638C8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2C7D9AF4C6E04C06A26314A95B1FF010"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -93,12 +99,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_969AB525572D497ABE72B5FE5C9AC666"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9A29C6B9417E44A2AFE854848DFC2BF2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,14 +111,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A6009706346CD51792F99EA6D084318A"
-        "OwnerKey" = "8:_7A0EA93E644A4D9E8037FBB3C062DD65"
+        "MsmKey" = "8:_BEEBDCAEA89A46269E79C2E0AAB54DEE"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEEBDCAEA89A46269E79C2E0AAB54DEE"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_D090DCCF5FB65AFFCFF65BE344E7C82D"
+        "OwnerKey" = "8:_7A0EA93E644A4D9E8037FBB3C062DD65"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -172,6 +172,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D0966638AB084779AFD69795C33FC8EB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7A0EA93E644A4D9E8037FBB3C062DD65"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -184,25 +190,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7A0EA93E644A4D9E8037FBB3C062DD65"
+        "OwnerKey" = "8:_1E66451E51FB3B65CA70ED8BCFBB92DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4A6FD55FC3BAE20215DFAE29551E2508"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D0966638AB084779AFD69795C33FC8EB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4F3106A1168946ADBC27B471209638C8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -341,10 +335,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C7D9AF4C6E04C06A26314A95B1FF010"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1E66451E51FB3B65CA70ED8BCFBB92DA"
             {
-            "SourcePath" = "8:..\\..\\..\\share\\pixmaps\\GrcInstallBanner.jpg"
-            "TargetName" = "8:GrcInstallBanner.jpg"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73"
+                "ScatterAssemblies"
+                {
+                    "_1E66451E51FB3B65CA70ED8BCFBB92DA"
+                    {
+                    "Name" = "8:ICSharpCode.SharpZipLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ICSharpCode.SharpZipLib.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A31B68165F144F3EBC3FF86D68C9E31B"
             "Condition" = "8:"
@@ -358,15 +363,15 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BF60BA55B9042EEB292E200B9442A36"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C7D9AF4C6E04C06A26314A95B1FF010"
             {
-            "SourcePath" = "8:..\\..\\..\\share\\pixmaps\\nsis-header.bmp"
-            "TargetName" = "8:nsis-header.bmp"
+            "SourcePath" = "8:..\\..\\..\\share\\pixmaps\\GrcInstallBanner.jpg"
+            "TargetName" = "8:GrcInstallBanner.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_459FE8815A7D45FB9F04152262ADA3AF"
+            "Folder" = "8:_A31B68165F144F3EBC3FF86D68C9E31B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -563,26 +568,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_969AB525572D497ABE72B5FE5C9AC666"
-            {
-            "SourcePath" = "8:..\\..\\..\\share\\pixmaps\\splash.png"
-            "TargetName" = "8:splash.png"
-            "Tag" = "8:"
-            "Folder" = "8:_459FE8815A7D45FB9F04152262ADA3AF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A29C6B9417E44A2AFE854848DFC2BF2"
             {
             "SourcePath" = "8:..\\..\\..\\share\\pixmaps\\splash.jpg"
@@ -623,26 +608,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6009706346CD51792F99EA6D084318A"
-            {
-            "SourcePath" = "8:boinc.tlb"
-            "TargetName" = "8:boinc.tlb"
-            "Tag" = "8:"
-            "Folder" = "8:_A31B68165F144F3EBC3FF86D68C9E31B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:2"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BEEBDCAEA89A46269E79C2E0AAB54DEE"
             {
             "SourcePath" = "8:..\\..\\..\\release\\mingwm10.dll"
@@ -661,6 +626,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D090DCCF5FB65AFFCFF65BE344E7C82D"
+            {
+            "SourcePath" = "8:BoincStake.tlb"
+            "TargetName" = "8:BoincStake.tlb"
+            "Tag" = "8:"
+            "Folder" = "8:_A31B68165F144F3EBC3FF86D68C9E31B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D0966638AB084779AFD69795C33FC8EB"
@@ -880,16 +865,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Gridcoin Stake 3.9"
-        "ProductCode" = "8:{76B22E1F-F8B0-4C9E-93AC-51F7FB4A6731}"
-        "PackageCode" = "8:{5BEEF686-2C25-4D0C-BAF3-8F8F83477437}"
+        "ProductName" = "8:Gridcoin Stake 4.4"
+        "ProductCode" = "8:{FB14A8DD-8904-49DD-ACB0-58CFEE7C5FF7}"
+        "PackageCode" = "8:{36D03638-E338-4289-A0A9-E617CDDBB777}"
         "UpgradeCode" = "8:{9617E9EA-252F-43CE-B53E-B48C85F71192}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:3.9"
+        "ProductVersion" = "8:4.4"
         "Manufacturer" = "8:GridcoinStake"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1447,7 +1432,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7A0EA93E644A4D9E8037FBB3C062DD65"
             {
-            "SourcePath" = "8:..\\boinc\\boinc\\obj\\Release\\boinc.dll"
+            "SourcePath" = "8:..\\boinc\\boinc\\obj\\Release\\BoincStake.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A31B68165F144F3EBC3FF86D68C9E31B"

@@ -51,13 +51,14 @@ Public Class GridcoinUpgrader
     Private Function RefreshScreen()
         Me.Show()
         Me.BringToFront()
+
+
+
         Me.Update() : Me.Refresh() : Application.DoEvents()
     End Function
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        
 
         lblPercent.Text = ""
-
 
         '''''''''''''''''''''RESTORE SNAPSHOT
         If Environment.GetCommandLineArgs.Length > 0 Then
@@ -274,6 +275,9 @@ Public Class GridcoinUpgrader
     End Sub
 
     Public Sub Snapshot()
+        'Not currently supported
+        Exit Sub
+
         Dim sDataDir As String = GRCDataDir()
         Dim sBlocks = sDataDir + "blocks"
         Dim sChain = sDataDir + "chainstate"
