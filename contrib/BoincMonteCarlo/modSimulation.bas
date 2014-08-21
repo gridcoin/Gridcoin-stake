@@ -28,7 +28,7 @@ For iDay = 1 To 365
         crunched_per_project = cobblestones_crunched / (Researchers(iResearcher).TotalProjects + 0.01)
         For iCPIDCount = 0 To Researchers(iResearcher).CPIDCount - 1
             'For each project in the cpid
-            Dim CurrentCPID As cpid
+            Dim CurrentCPID As CPID
             Set CurrentCPID = Researchers(iResearcher).GetCPID(Val(iCPIDCount))
             For iProjectCount = 0 To CurrentCPID.ProjectCount - 1
                 Call CurrentCPID.GetProject2(Val(iProjectCount), CurrentProject)
@@ -77,7 +77,7 @@ AppendResult "Projects and Total Credits:" + vbCrLf
 
 For i = 0 To 23
     Dim sRow As String
-    sOut = BoincProjects(i).Name + ", Network RAC: " + RoundToString(BoincProjects(i).GetNetworkRac(), False) + ", AvgRac: " + RoundToString(BoincProjects(i).Average, False)
+    sOut = BoincProjects(i).Name + ", Network RAC: " + RoundToString(BoincProjects(i).NetworkRAC(), False) + ", AvgRac: " + RoundToString(BoincProjects(i).Average, False)
     AppendResult sOut
     
 Next i
@@ -140,7 +140,7 @@ Dim CurrentProject As Project
 Dim bUsedProjects(30) As Boolean
 For iCPIDCount = 0 To r.CPIDCount - 1
           'For each project in the cpid
-           Dim CurrentCPID As cpid
+           Dim CurrentCPID As CPID
            Set CurrentCPID = r.GetCPID(Val(iCPIDCount))
            For iProjectCount = 0 To CurrentCPID.ProjectCount - 1
                Call CurrentCPID.GetProject2(Val(iProjectCount), CurrentProject)
@@ -172,7 +172,7 @@ Dim TotalMag As Long
 Dim CurrentProject As Project
 For iCPIDCount = 0 To r.CPIDCount - 1
           'For each project in the cpid
-           Dim CurrentCPID As cpid
+           Dim CurrentCPID As CPID
            Set CurrentCPID = r.GetCPID(Val(iCPIDCount))
            For iProjectCount = 0 To CurrentCPID.ProjectCount - 1
                Call CurrentCPID.GetProject2(Val(iProjectCount), CurrentProject)
@@ -211,7 +211,7 @@ Dim CurrentProject As Project
 For x = 0 To iResearcherCount - 1
       For iCPIDCount = 0 To Researchers(iResearcher).CPIDCount - 1
           'For each project in the cpid
-           Dim CurrentCPID As cpid
+           Dim CurrentCPID As CPID
            Set CurrentCPID = Researchers(iResearcher).GetCPID(Val(iCPIDCount))
            For iProjectCount = 0 To CurrentCPID.ProjectCount - 1
                Call CurrentCPID.GetProject2(Val(iProjectCount), CurrentProject)

@@ -72,11 +72,12 @@ For iResNo = 0 To 99
     Set Researchers(iResNo) = New Researcher
     iType = Rn(4)
     iHunterChance = Rn(100)
-    If iHunterChance > 10 And iType = 1 Then iType = 0
+    If iHunterChance > 15 And iType = 1 Then iType = 0
     iLotsOfCpidsChance = Rn(100)
     If iLotsOfCpidsChance > 15 And iType = 2 Then iType = 0
     iPowerUserChance = Rn(100)
     If iPowerUserChance > 20 And iType = 4 Then iType = 0
+    
     sType = ResearcherType(iType)
     Researchers(iResNo).iResearcherType = iType
     Researchers(iResNo).Name = "RS_" + Trim(sType) + "#" + Trim(iResNo)
@@ -96,8 +97,8 @@ For iResNo = 0 To 99
     End Select
    
     For iCPIDs = 0 To iCPIDCount - 1
-        Dim r_cpid As cpid
-        Set r_cpid = New cpid
+        Dim r_cpid As CPID
+        Set r_cpid = New CPID
         r_cpid.sCpid = Hex(Rnd(1) * 1000000)
         Call Researchers(iResNo).AddCPID(r_cpid)
         

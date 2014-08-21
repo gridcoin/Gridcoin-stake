@@ -74,106 +74,109 @@ SubsetSum@Home, Network RAC: 2115053.24, AvgRac: 6409.25
 
 Individual Researcher Results:
 
-RS_ONE_CPID#0: Magnitude1: 74.81, Magnitude2: 12, Mag1Balance:  $27231.93,Mag1AvgReward: $74.61, Mag2AvgReward: $11.96
-RS_LOTS_OF_CPIDS#1: Magnitude1: 0, Magnitude2: 0, Mag1Balance:  $87.73,Mag1AvgReward: $.24, Mag2AvgReward: $.23
-RS_NORMAL#2: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48903.67,Mag1AvgReward: $133.98, Mag2AvgReward: $16.80
-RS_NORMAL#3: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72885.58,Mag1AvgReward: $199.69, Mag2AvgReward: $16.72
-RS_NORMAL#4: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $53056.49,Mag1AvgReward: $145.36, Mag2AvgReward: $18.22
-RS_NORMAL#5: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48872.11,Mag1AvgReward: $133.90, Mag2AvgReward: $16.88
-RS_NORMAL#6: Magnitude1: 297.03, Magnitude2: 12.49, Mag1Balance:  $109410.89,Mag1AvgReward: $299.76, Mag2AvgReward: $12.62
-RS_NORMAL#7: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48770.78,Mag1AvgReward: $133.62, Mag2AvgReward: $16.75
-RS_NORMAL#8: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144658.41,Mag1AvgReward: $396.32, Mag2AvgReward: $16.69
-RS_NORMAL#9: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29281.43,Mag1AvgReward: $80.22, Mag2AvgReward: $16.74
-RS_NORMAL#10: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36677.75,Mag1AvgReward: $100.49, Mag2AvgReward: $12.60
-RS_ONE_CPID#11: Magnitude1: 166.11, Magnitude2: 19.99, Mag1Balance:  $52923.60,Mag1AvgReward: $145.00, Mag2AvgReward: $17.45
-RS_NORMAL#12: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $52857.16,Mag1AvgReward: $144.81, Mag2AvgReward: $18.15
-RS_ONE_CPID#13: Magnitude1: 298.51, Magnitude2: 24.99, Mag1Balance:  $80848.26,Mag1AvgReward: $221.50, Mag2AvgReward: $18.55
-RS_NORMAL#14: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $33466.33,Mag1AvgReward: $91.69, Mag2AvgReward: $15.31
-RS_NORMAL#15: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36558.60,Mag1AvgReward: $100.16, Mag2AvgReward: $16.73
-RS_NORMAL#16: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54676.61,Mag1AvgReward: $149.80, Mag2AvgReward: $12.54
-RS_ONE_CPID#17: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36467.07,Mag1AvgReward: $99.91, Mag2AvgReward: $20.85
-RS_ONE_CPID#18: Magnitude1: 99.8, Magnitude2: 19.22, Mag1Balance:  $36526.95,Mag1AvgReward: $100.07, Mag2AvgReward: $19.28
-RS_NORMAL#19: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27581.06,Mag1AvgReward: $75.56, Mag2AvgReward: $12.62
-RS_ONE_CPID#20: Magnitude1: 199, Magnitude2: 15.99, Mag1Balance:  $72636.82,Mag1AvgReward: $199.00, Mag2AvgReward: $15.99
-RS_NORMAL#21: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27531.18,Mag1AvgReward: $75.43, Mag2AvgReward: $12.60
-RS_NORMAL#22: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36943.53,Mag1AvgReward: $101.22, Mag2AvgReward: $12.69
-RS_ONE_CPID#23: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36843.86,Mag1AvgReward: $100.94, Mag2AvgReward: $12.65
-RS_NORMAL#24: Magnitude1: 74.81, Magnitude2: 12, Mag1Balance:  $27456.37,Mag1AvgReward: $75.22, Mag2AvgReward: $12.06
-RS_ONE_CPID#25: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36458.84,Mag1AvgReward: $99.89, Mag2AvgReward: $16.68
-RS_NORMAL#26: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27406.50,Mag1AvgReward: $75.09, Mag2AvgReward: $12.54
-RS_HUNTER#27: Magnitude1: 0, Magnitude2: 0, Mag1Balance:  $26104.33,Mag1AvgReward: $71.52, Mag2AvgReward: $14.29
-RS_NORMAL#28: Magnitude1: 99.8, Magnitude2: 19.99, Mag1Balance:  $36467.07,Mag1AvgReward: $99.91, Mag2AvgReward: $20.01
-RS_NORMAL#29: Magnitude1: 99.5, Magnitude2: 8.33, Mag1Balance:  $36467.67,Mag1AvgReward: $99.91, Mag2AvgReward: $8.36
-RS_NORMAL#30: Magnitude1: 99.75, Magnitude2: 15.99, Mag1Balance:  $36508.72,Mag1AvgReward: $100.02, Mag2AvgReward: $16.04
-RS_NORMAL#31: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72935.33,Mag1AvgReward: $199.82, Mag2AvgReward: $16.73
-RS_NORMAL#32: Magnitude1: 99.67, Magnitude2: 12, Mag1Balance:  $36677.75,Mag1AvgReward: $100.49, Mag2AvgReward: $12.09
-RS_ONE_CPID#33: Magnitude1: 99.01, Magnitude2: 4.16, Mag1Balance:  $36534.65,Mag1AvgReward: $100.09, Mag2AvgReward: $4.21
-RS_NORMAL#34: Magnitude1: 99.5, Magnitude2: 8.33, Mag1Balance:  $36567.17,Mag1AvgReward: $100.18, Mag2AvgReward: $8.39
-RS_ONE_CPID#35: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $42219.45,Mag1AvgReward: $115.67, Mag2AvgReward: $19.32
-RS_NORMAL#36: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54776.11,Mag1AvgReward: $150.07, Mag2AvgReward: $12.56
-RS_NORMAL#37: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36777.42,Mag1AvgReward: $100.76, Mag2AvgReward: $12.63
-RS_NORMAL#38: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29201.59,Mag1AvgReward: $80.00, Mag2AvgReward: $16.69
-RS_NORMAL#39: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54626.85,Mag1AvgReward: $149.66, Mag2AvgReward: $12.53
-RS_ONE_CPID#40: Magnitude1: 99.67, Magnitude2: 12, Mag1Balance:  $36411.97,Mag1AvgReward: $99.76, Mag2AvgReward: $12.01
-RS_NORMAL#41: Magnitude1: 74.81, Magnitude2: 12, Mag1Balance:  $27431.43,Mag1AvgReward: $75.15, Mag2AvgReward: $12.05
-RS_NORMAL#42: Magnitude1: 49.88, Magnitude2: 8, Mag1Balance:  $18428.92,Mag1AvgReward: $50.49, Mag2AvgReward: $8.10
-RS_NORMAL#43: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36433.91,Mag1AvgReward: $99.82, Mag2AvgReward: $16.67
-RS_NORMAL#44: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36611.31,Mag1AvgReward: $100.30, Mag2AvgReward: $12.57
-RS_NORMAL#45: Magnitude1: 297.03, Magnitude2: 12.49, Mag1Balance:  $108712.87,Mag1AvgReward: $297.84, Mag2AvgReward: $12.53
-RS_NORMAL#46: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36433.91,Mag1AvgReward: $99.82, Mag2AvgReward: $16.67
-RS_NORMAL#47: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $16.66
-RS_NORMAL#48: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $55174.12,Mag1AvgReward: $151.16, Mag2AvgReward: $12.65
-RS_NORMAL#49: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $16.66
-RS_NORMAL#50: Magnitude1: 166.11, Magnitude2: 19.99, Mag1Balance:  $60664.47,Mag1AvgReward: $166.20, Mag2AvgReward: $20.00
-RS_ONE_CPID#51: Magnitude1: 39.92, Magnitude2: 8, Mag1Balance:  $14670.67,Mag1AvgReward: $40.19, Mag2AvgReward: $8.05
-RS_NORMAL#52: Magnitude1: 99.5, Magnitude2: 8.33, Mag1Balance:  $36915.43,Mag1AvgReward: $101.14, Mag2AvgReward: $8.47
-RS_NORMAL#53: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29181.63,Mag1AvgReward: $79.95, Mag2AvgReward: $16.68
-RS_ONE_CPID#54: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72636.82,Mag1AvgReward: $199.00, Mag2AvgReward: $16.66
-RS_NORMAL#55: Magnitude1: 66.45, Magnitude2: 8.33, Mag1Balance:  $36511.64,Mag1AvgReward: $100.03, Mag2AvgReward: $12.54
-RS_NORMAL#56: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54527.35,Mag1AvgReward: $149.39, Mag2AvgReward: $12.51
-RS_NORMAL#57: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54577.10,Mag1AvgReward: $149.53, Mag2AvgReward: $12.52
-RS_ONE_CPID#58: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $90796.01,Mag1AvgReward: $248.76, Mag2AvgReward: $20.82
-RS_ONE_CPID#59: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54577.10,Mag1AvgReward: $149.53, Mag2AvgReward: $12.52
-RS_ONE_CPID#60: Magnitude1: 198.02, Magnitude2: 8.33, Mag1Balance:  $72376.24,Mag1AvgReward: $198.29, Mag2AvgReward: $8.34
-RS_NORMAL#61: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144950.49,Mag1AvgReward: $397.12, Mag2AvgReward: $16.70
-RS_NORMAL#62: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27331.68,Mag1AvgReward: $74.88, Mag2AvgReward: $12.51
-RS_POWER_USER#63: Magnitude1: 500, Magnitude2: 104.12, Mag1Balance:  $182500.00,Mag1AvgReward: $500.00, Mag2AvgReward: $104.07
-RS_ONE_CPID#64: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27381.56,Mag1AvgReward: $75.02, Mag2AvgReward: $12.53
-RS_NORMAL#65: Magnitude1: 297.03, Magnitude2: 12.49, Mag1Balance:  $108514.85,Mag1AvgReward: $297.30, Mag2AvgReward: $12.51
-RS_ONE_CPID#66: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27381.56,Mag1AvgReward: $75.02, Mag2AvgReward: $12.53
-RS_ONE_CPID#67: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36511.64,Mag1AvgReward: $100.03, Mag2AvgReward: $12.54
-RS_ONE_CPID#68: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36378.75,Mag1AvgReward: $99.67, Mag2AvgReward: $12.49
-RS_NORMAL#69: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $52757.49,Mag1AvgReward: $144.54, Mag2AvgReward: $18.12
-RS_ONE_CPID#70: Magnitude1: 59.88, Magnitude2: 12.49, Mag1Balance:  $21896.19,Mag1AvgReward: $59.99, Mag2AvgReward: $12.52
-RS_NORMAL#71: Magnitude1: 166.11, Magnitude2: 19.99, Mag1Balance:  $60631.24,Mag1AvgReward: $166.11, Mag2AvgReward: $19.99
-RS_NORMAL#72: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54577.10,Mag1AvgReward: $149.53, Mag2AvgReward: $12.52
-RS_NORMAL#73: Magnitude1: 66.45, Magnitude2: 8.33, Mag1Balance:  $24385.39,Mag1AvgReward: $66.81, Mag2AvgReward: $8.38
-RS_NORMAL#74: Magnitude1: 298.51, Magnitude2: 24.99, Mag1Balance:  $80547.27,Mag1AvgReward: $220.68, Mag2AvgReward: $18.47
-RS_POWER_USER#75: Magnitude1: 498.75, Magnitude2: 83.3, Mag1Balance:  $181324.18,Mag1AvgReward: $496.78, Mag2AvgReward: $83.01
-RS_POWER_USER#76: Magnitude1: 500, Magnitude2: 62.47, Mag1Balance:  $182500.00,Mag1AvgReward: $500.00, Mag2AvgReward: $62.45
-RS_ONE_CPID#77: Magnitude1: 49.88, Magnitude2: 8.33, Mag1Balance:  $18304.24,Mag1AvgReward: $50.15, Mag2AvgReward: $8.38
-RS_NORMAL#78: Magnitude1: 298.51, Magnitude2: 24.99, Mag1Balance:  $80298.51,Mag1AvgReward: $220.00, Mag2AvgReward: $18.42
-RS_ONE_CPID#79: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
-RS_NORMAL#80: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54477.60,Mag1AvgReward: $149.25, Mag2AvgReward: $12.49
-RS_NORMAL#81: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54477.60,Mag1AvgReward: $149.25, Mag2AvgReward: $12.49
-RS_NORMAL#82: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54477.60,Mag1AvgReward: $149.25, Mag2AvgReward: $12.49
-RS_POWER_USER#83: Magnitude1: 500, Magnitude2: 66.64, Mag1Balance:  $182500.00,Mag1AvgReward: $500.00, Mag2AvgReward: $66.64
-RS_ONE_CPID#84: Magnitude1: 99.67, Magnitude2: 12, Mag1Balance:  $36378.75,Mag1AvgReward: $99.67, Mag2AvgReward: $11.99
-RS_NORMAL#85: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72636.82,Mag1AvgReward: $199.00, Mag2AvgReward: $16.66
-RS_NORMAL#86: Magnitude1: 79.84, Magnitude2: 15.99, Mag1Balance:  $29141.71,Mag1AvgReward: $79.84, Mag2AvgReward: $15.99
-RS_POWER_USER#87: Magnitude1: 498.75, Magnitude2: 83.3, Mag1Balance:  $182044.88,Mag1AvgReward: $498.75, Mag2AvgReward: $83.30
-RS_NORMAL#88: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36378.75,Mag1AvgReward: $99.67, Mag2AvgReward: $12.49
-RS_NORMAL#89: Magnitude1: 99.8, Magnitude2: 19.99, Mag1Balance:  $31656.68,Mag1AvgReward: $86.73, Mag2AvgReward: $17.37
-RS_NORMAL#90: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36378.75,Mag1AvgReward: $99.67, Mag2AvgReward: $12.49
-RS_NORMAL#91: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $31636.72,Mag1AvgReward: $86.68, Mag2AvgReward: $18.09
-RS_NORMAL#92: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36209.47,Mag1AvgReward: $99.20, Mag2AvgReward: $16.57
-RS_ONE_CPID#93: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
-RS_NORMAL#94: Magnitude1: 99.01, Magnitude2: 4.16, Mag1Balance:  $36138.61,Mag1AvgReward: $99.01, Mag2AvgReward: $4.16
-RS_NORMAL#95: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48505.00,Mag1AvgReward: $132.89, Mag2AvgReward: $16.66
-RS_NORMAL#96: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $16.66
-RS_NORMAL#97: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36378.75,Mag1AvgReward: $99.67, Mag2AvgReward: $12.49
-RS_NORMAL#98: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29141.71,Mag1AvgReward: $79.84, Mag2AvgReward: $16.66
-RS_NORMAL#99: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
+
+
+RS_NORMAL#0: Magnitude1: 199, Magnitude2: 15.99, Mag1Balance:  $72437.82,Mag1AvgReward: $198.46, Mag2AvgReward: $15.95
+RS_NORMAL#1: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27231.93,Mag1AvgReward: $74.61, Mag2AvgReward: $12.46
+RS_NORMAL#2: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36327.35,Mag1AvgReward: $99.53, Mag2AvgReward: $20.77
+RS_NORMAL#3: Magnitude1: 79.84, Magnitude2: 15.99, Mag1Balance:  $29061.87,Mag1AvgReward: $79.62, Mag2AvgReward: $15.95
+RS_ONE_CPID#4: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $90497.51,Mag1AvgReward: $247.94, Mag2AvgReward: $20.76
+RS_ONE_CPID#5: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $60465.13,Mag1AvgReward: $165.66, Mag2AvgReward: $20.77
+RS_ONE_CPID#6: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $45386.54,Mag1AvgReward: $124.35, Mag2AvgReward: $20.77
+RS_NORMAL#7: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $90497.51,Mag1AvgReward: $247.94, Mag2AvgReward: $20.76
+RS_LOTS_OF_CPIDS#8: Magnitude1: 0, Magnitude2: 0, Mag1Balance:  $22.31,Mag1AvgReward: $.06, Mag2AvgReward: $.06
+RS_NORMAL#9: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36708.22,Mag1AvgReward: $100.57, Mag2AvgReward: $16.80
+RS_NORMAL#10: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72736.33,Mag1AvgReward: $199.28, Mag2AvgReward: $16.68
+RS_NORMAL#11: Magnitude1: 495.05, Magnitude2: 20.82, Mag1Balance:  $180702.97,Mag1AvgReward: $495.08, Mag2AvgReward: $20.85
+RS_NORMAL#12: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72835.83,Mag1AvgReward: $199.55, Mag2AvgReward: $16.70
+RS_ONE_CPID#13: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36583.53,Mag1AvgReward: $100.23, Mag2AvgReward: $16.74
+RS_ONE_CPID#14: Magnitude1: 124.69, Magnitude2: 19.99, Mag1Balance:  $45685.79,Mag1AvgReward: $125.17, Mag2AvgReward: $20.07
+RS_NORMAL#15: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72786.08,Mag1AvgReward: $199.41, Mag2AvgReward: $16.69
+RS_NORMAL#16: Magnitude1: 49.88, Magnitude2: 8, Mag1Balance:  $18428.92,Mag1AvgReward: $50.49, Mag2AvgReward: $8.10
+RS_HUNTER#17: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $56019.89,Mag1AvgReward: $153.48, Mag2AvgReward: $12.85
+RS_NORMAL#18: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48704.33,Mag1AvgReward: $133.44, Mag2AvgReward: $16.73
+RS_ONE_CPID#19: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54676.61,Mag1AvgReward: $149.80, Mag2AvgReward: $12.54
+RS_NORMAL#20: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36511.64,Mag1AvgReward: $100.03, Mag2AvgReward: $12.54
+RS_NORMAL#21: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36633.41,Mag1AvgReward: $100.37, Mag2AvgReward: $16.76
+RS_ONE_CPID#22: Magnitude1: 199.34, Magnitude2: 24.99, Mag1Balance:  $72757.46,Mag1AvgReward: $199.34, Mag2AvgReward: $24.99
+RS_NORMAL#23: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48604.66,Mag1AvgReward: $133.16, Mag2AvgReward: $16.69
+RS_NORMAL#24: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72636.82,Mag1AvgReward: $199.00, Mag2AvgReward: $16.66
+RS_ONE_CPID#25: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36583.53,Mag1AvgReward: $100.23, Mag2AvgReward: $16.74
+RS_ONE_CPID#26: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $91044.77,Mag1AvgReward: $249.44, Mag2AvgReward: $20.88
+RS_NORMAL#27: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $90796.01,Mag1AvgReward: $248.76, Mag2AvgReward: $20.82
+RS_NORMAL#28: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48905.33,Mag1AvgReward: $133.99, Mag2AvgReward: $16.81
+RS_NORMAL#29: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72636.82,Mag1AvgReward: $199.00, Mag2AvgReward: $16.66
+RS_NORMAL#30: Magnitude1: 99.75, Magnitude2: 15.99, Mag1Balance:  $36558.60,Mag1AvgReward: $100.16, Mag2AvgReward: $16.06
+RS_NORMAL#31: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48737.55,Mag1AvgReward: $133.53, Mag2AvgReward: $16.74
+RS_NORMAL#32: Magnitude1: 99.75, Magnitude2: 15.99, Mag1Balance:  $36558.60,Mag1AvgReward: $100.16, Mag2AvgReward: $16.06
+RS_NORMAL#33: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $60697.69,Mag1AvgReward: $166.30, Mag2AvgReward: $20.85
+RS_NORMAL#34: Magnitude1: 99.8, Magnitude2: 19.99, Mag1Balance:  $36526.95,Mag1AvgReward: $100.07, Mag2AvgReward: $20.05
+RS_NORMAL#35: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29361.27,Mag1AvgReward: $80.44, Mag2AvgReward: $16.78
+RS_NORMAL#36: Magnitude1: 99.5, Magnitude2: 8.33, Mag1Balance:  $36567.17,Mag1AvgReward: $100.18, Mag2AvgReward: $8.39
+RS_ONE_CPID#37: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36744.20,Mag1AvgReward: $100.67, Mag2AvgReward: $12.62
+RS_HUNTER#38: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72686.58,Mag1AvgReward: $199.14, Mag2AvgReward: $16.67
+RS_NORMAL#39: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36458.84,Mag1AvgReward: $99.89, Mag2AvgReward: $16.68
+RS_ONE_CPID#40: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $55870.64,Mag1AvgReward: $153.07, Mag2AvgReward: $12.81
+RS_NORMAL#41: Magnitude1: 59.88, Magnitude2: 12.49, Mag1Balance:  $21976.03,Mag1AvgReward: $60.21, Mag2AvgReward: $12.56
+RS_NORMAL#42: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
+RS_NORMAL#43: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72587.07,Mag1AvgReward: $198.87, Mag2AvgReward: $16.65
+RS_ONE_CPID#44: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $45561.10,Mag1AvgReward: $124.82, Mag2AvgReward: $20.85
+RS_ONE_CPID#45: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36458.84,Mag1AvgReward: $99.89, Mag2AvgReward: $16.68
+RS_ONE_CPID#46: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $60664.47,Mag1AvgReward: $166.20, Mag2AvgReward: $20.84
+RS_NORMAL#47: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36458.84,Mag1AvgReward: $99.89, Mag2AvgReward: $16.68
+RS_NORMAL#48: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36511.64,Mag1AvgReward: $100.03, Mag2AvgReward: $12.54
+RS_NORMAL#49: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54776.11,Mag1AvgReward: $150.07, Mag2AvgReward: $12.56
+RS_NORMAL#50: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $90845.76,Mag1AvgReward: $248.89, Mag2AvgReward: $20.84
+RS_NORMAL#51: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $60764.14,Mag1AvgReward: $166.48, Mag2AvgReward: $20.87
+RS_NORMAL#52: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36483.78,Mag1AvgReward: $99.96, Mag2AvgReward: $16.69
+RS_ONE_CPID#53: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36427.15,Mag1AvgReward: $99.80, Mag2AvgReward: $20.82
+RS_NORMAL#54: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72736.33,Mag1AvgReward: $199.28, Mag2AvgReward: $16.68
+RS_HUNTER#55: Magnitude1: 99.5, Magnitude2: 8.33, Mag1Balance:  $36666.67,Mag1AvgReward: $100.46, Mag2AvgReward: $8.41
+RS_NORMAL#56: Magnitude1: 74.81, Magnitude2: 12.49, Mag1Balance:  $27381.56,Mag1AvgReward: $75.02, Mag2AvgReward: $12.53
+RS_NORMAL#57: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72736.33,Mag1AvgReward: $199.28, Mag2AvgReward: $16.68
+RS_NORMAL#58: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36427.15,Mag1AvgReward: $99.80, Mag2AvgReward: $20.82
+RS_NORMAL#59: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29221.55,Mag1AvgReward: $80.06, Mag2AvgReward: $16.70
+RS_NORMAL#60: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
+RS_NORMAL#61: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48538.22,Mag1AvgReward: $132.98, Mag2AvgReward: $16.67
+RS_NORMAL#62: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
+RS_NORMAL#63: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $45511.23,Mag1AvgReward: $124.69, Mag2AvgReward: $20.82
+RS_NORMAL#64: Magnitude1: 99.75, Magnitude2: 15.99, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $15.99
+RS_NORMAL#65: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36427.15,Mag1AvgReward: $99.80, Mag2AvgReward: $20.82
+RS_ONE_CPID#66: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36427.15,Mag1AvgReward: $99.80, Mag2AvgReward: $20.82
+RS_ONE_CPID#67: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144455.44,Mag1AvgReward: $395.77, Mag2AvgReward: $16.65
+RS_NORMAL#68: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54577.10,Mag1AvgReward: $149.53, Mag2AvgReward: $12.52
+RS_ONE_CPID#69: Magnitude1: 99.75, Magnitude2: 15.38, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $15.38
+RS_NORMAL#70: Magnitude1: 166.11, Magnitude2: 20.82, Mag1Balance:  $60697.69,Mag1AvgReward: $166.30, Mag2AvgReward: $20.85
+RS_NORMAL#71: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48538.22,Mag1AvgReward: $132.98, Mag2AvgReward: $16.67
+RS_ONE_CPID#72: Magnitude1: 99.8, Magnitude2: 19.99, Mag1Balance:  $36427.15,Mag1AvgReward: $99.80, Mag2AvgReward: $19.99
+RS_NORMAL#73: Magnitude1: 79.84, Magnitude2: 16.66, Mag1Balance:  $29241.51,Mag1AvgReward: $80.11, Mag2AvgReward: $16.72
+RS_ONE_CPID#74: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144658.41,Mag1AvgReward: $396.32, Mag2AvgReward: $16.68
+RS_NORMAL#75: Magnitude1: 99.67, Magnitude2: 12.49, Mag1Balance:  $36478.41,Mag1AvgReward: $99.94, Mag2AvgReward: $12.53
+RS_NORMAL#76: Magnitude1: 99.8, Magnitude2: 20.82, Mag1Balance:  $36427.15,Mag1AvgReward: $99.80, Mag2AvgReward: $20.82
+RS_NORMAL#77: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54527.35,Mag1AvgReward: $149.39, Mag2AvgReward: $12.51
+RS_HUNTER#78: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36433.91,Mag1AvgReward: $99.82, Mag2AvgReward: $16.67
+RS_NORMAL#79: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $45486.29,Mag1AvgReward: $124.62, Mag2AvgReward: $20.81
+RS_NORMAL#80: Magnitude1: 297.03, Magnitude2: 12.49, Mag1Balance:  $109009.90,Mag1AvgReward: $298.66, Mag2AvgReward: $12.56
+RS_NORMAL#81: Magnitude1: 74.81, Magnitude2: 12, Mag1Balance:  $27381.56,Mag1AvgReward: $75.02, Mag2AvgReward: $12.03
+RS_NORMAL#82: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48571.44,Mag1AvgReward: $133.07, Mag2AvgReward: $16.68
+RS_NORMAL#83: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $45461.35,Mag1AvgReward: $124.55, Mag2AvgReward: $20.80
+RS_NORMAL#84: Magnitude1: 59.88, Magnitude2: 12.49, Mag1Balance:  $21976.03,Mag1AvgReward: $60.21, Mag2AvgReward: $12.56
+RS_NORMAL#85: Magnitude1: 396.04, Magnitude2: 16.66, Mag1Balance:  $144554.45,Mag1AvgReward: $396.04, Mag2AvgReward: $16.66
+RS_NORMAL#86: Magnitude1: 248.76, Magnitude2: 20.82, Mag1Balance:  $90696.51,Mag1AvgReward: $248.48, Mag2AvgReward: $20.80
+RS_NORMAL#87: Magnitude1: 149.25, Magnitude2: 12.49, Mag1Balance:  $54527.35,Mag1AvgReward: $149.39, Mag2AvgReward: $12.51
+RS_ONE_CPID#88: Magnitude1: 124.69, Magnitude2: 20.82, Mag1Balance:  $45436.42,Mag1AvgReward: $124.48, Mag2AvgReward: $20.79
+RS_NORMAL#89: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36433.91,Mag1AvgReward: $99.82, Mag2AvgReward: $16.67
+RS_NORMAL#90: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $16.66
+RS_POWER_USER#91: Magnitude1: 500, Magnitude2: 79.13, Mag1Balance:  $182500.00,Mag1AvgReward: $500.00, Mag2AvgReward: $83.38
+RS_NORMAL#92: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $16.66
+RS_NORMAL#93: Magnitude1: 132.89, Magnitude2: 16.66, Mag1Balance:  $48538.22,Mag1AvgReward: $132.98, Mag2AvgReward: $16.67
+RS_LOTS_OF_CPIDS#94: Magnitude1: 0, Magnitude2: 0, Mag1Balance:  $.00,Mag1AvgReward: $.00, Mag2AvgReward: $.00
+RS_NORMAL#95: Magnitude1: 199, Magnitude2: 16.66, Mag1Balance:  $72636.82,Mag1AvgReward: $199.00, Mag2AvgReward: $16.66
+RS_NORMAL#96: Magnitude1: 199.34, Magnitude2: 24.99, Mag1Balance:  $72757.46,Mag1AvgReward: $199.34, Mag2AvgReward: $24.99
+RS_POWER_USER#97: Magnitude1: 500, Magnitude2: 149.94, Mag1Balance:  $182500.00,Mag1AvgReward: $500.00, Mag2AvgReward: $149.93
+RS_POWER_USER#98: Magnitude1: 500, Magnitude2: 108.29, Mag1Balance:  $182500.00,Mag1AvgReward: $500.00, Mag2AvgReward: $108.29
+RS_ONE_CPID#99: Magnitude1: 99.75, Magnitude2: 16.66, Mag1Balance:  $36408.97,Mag1AvgReward: $99.75, Mag2AvgReward: $16.66
+
 
 Global Results by Researcher Type:
 
@@ -214,6 +217,16 @@ For One CPID: 141 and 14 for Mag V2.
 A very important note for Power Users:  The program confirms the magnitude level of 499.1
    for power users (5* the cores) and a MagV2 of 79.9 (confirming
 the Mag2 method yields approx 5* the rewards as well).
+
+
+Links to Results:
+
+http://gridcoin.us/images/development/BoincMonteCarlo.txt
+http://gridcoin.us/images/development/BoincMonteCarloAssumptionsAndResults.txt
+
+Links To Source Code:
+
+https://github.com/gridcoin/Gridcoin-stake/tree/master/contrib/BoincMonteCarlo
 
 
 

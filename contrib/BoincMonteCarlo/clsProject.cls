@@ -12,7 +12,7 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Public Name As String
-Dim NetworkRAC As Double
+Public NetworkRAC As Double
 Dim Entries As Double
 Public CobblestoneMultiplier As Integer
 Public URL As String
@@ -27,17 +27,17 @@ Dim UserRacWithDay(999) As Double
 Dim UserRacWithDayEntries(999) As Double
 Dim UserAverage As Double
 Public bNonPopular As Boolean
-Public Sub AddNetworkRacToMother(amount As Double, iDay As Long)
-NetworkRAC = NetworkRAC + amount
-NetworkRacWithDay(iDay) = NetworkRacWithDay(iDay) + amount
+Public Sub AddNetworkRacToMother(Amount As Double, iDay As Long)
+NetworkRAC = NetworkRAC + Amount
+NetworkRacWithDay(iDay) = NetworkRacWithDay(iDay) + Amount
 NetworkRacWithDayEntries(iDay) = NetworkRacWithDayEntries(iDay) + 1
 NetworkEntries = NetworkEntries + 1
 Average = NetworkRAC / NetworkEntries
 End Sub
-Public Sub AddNetworkRac(amount As Double, iDay As Long)
+Public Sub AddNetworkRac(Amount As Double, iDay As Long)
 Dim MotherProject As Project
 Set MotherProject = BoincProjects(Me.id)
-Call MotherProject.AddNetworkRacToMother(amount, iDay)
+Call MotherProject.AddNetworkRacToMother(Amount, iDay)
 End Sub
 Public Sub Purge30DayNetworkDMAFromMother(iDay As Long)
 Dim PriorDay As Long
@@ -60,10 +60,10 @@ End Function
 Public Function GetUserAverage() As Double
 GetUserAverage = UserAverage
 End Function
-Public Sub AddUserRac(amount As Double, iDay As Long)
-UserTotalRAC = UserTotalRAC + amount
+Public Sub AddUserRac(Amount As Double, iDay As Long)
+UserTotalRAC = UserTotalRAC + Amount
 UserEntries = UserEntries + 1
-UserRacWithDay(iDay) = UserRacWithDay(iDay) + amount
+UserRacWithDay(iDay) = UserRacWithDay(iDay) + Amount
 UserRacWithDayEntries(iDay) = UserRacWithDayEntries(iDay) + 1
 UserAverage = UserTotalRAC / UserEntries
 End Sub
