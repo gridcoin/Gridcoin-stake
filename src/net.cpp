@@ -669,7 +669,7 @@ std::string GetHttpPage(std::string cpid, bool UseDNS, bool ClearCache)
 		std::string url3 = "boinc.netsoft-online.com";
 		std::string url4 = "get_user.php?cpid=" + cpid;
 
-		printf("Getting HTTP Request\r\n %s \r\n",url4.c_str());
+		if (fDebug) printf("HTTP Request\r\n %s \r\n",url4.c_str());
 
 		CService addrIP(url3, 80, true);
 		if (UseDNS)
@@ -677,7 +677,7 @@ std::string GetHttpPage(std::string cpid, bool UseDNS, bool ClearCache)
         if (addrIP.IsValid()) 
 			{
 				addrConnect = addrIP;
-				printf("Querying address\r\n %s \r\n",url4.c_str());
+				printf("QA:%s",url4.c_str());
 		    }
 		}
 		else
@@ -1848,6 +1848,8 @@ void static ProcessOneShot()
 
 void static ThreadStakeMiner(void* parg)
 {
+	//8-22-2014
+
     printf("ThreadStakeMiner started\n");
     CWallet* pwallet = (CWallet*)parg;
 	while (!bCPIDsLoaded)

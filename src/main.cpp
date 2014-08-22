@@ -573,7 +573,7 @@ MiningCPID GetNextProject()
 	GlobalCPUMiningCPID.pobdifficulty = 0;
 	GlobalCPUMiningCPID.diffbytes = 0;
 
-	printf("Precalculating...");
+	printf("qq0.");
 
 	if (IsInitialBlockDownload() || !bCPIDsLoaded) 
 	{
@@ -687,8 +687,7 @@ MiningCPID GetNextProject()
 		GlobalCPUMiningCPID.NetworkRAC =0;
 		GlobalCPUMiningCPID.Magnitude = 0;
 		mdMiningNetworkRAC = 0;
-	    printf("User is an investor");
-
+	    //printf("User is an investor");
 
      	}
 		catch (std::exception& e)
@@ -4706,8 +4705,12 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         // Send the rest of the chain
         if (pindex)
             pindex = pindex->pnext;
-        int nLimit = 750;
-        printf("getblocks %d to %s limit %d\n", (pindex ? pindex->nHeight : -1), hashStop.ToString().substr(0,20).c_str(), nLimit);
+        int nLimit = 1000;
+		//8-22-2014
+
+
+        if (fDebug)    printf("getblocks %d to %s limit %d\n", (pindex ? pindex->nHeight : -1), hashStop.ToString().substr(0,20).c_str(), nLimit);
+
         for (; pindex; pindex = pindex->pnext)
         {
             if (pindex->GetBlockHash() == hashStop)
@@ -5668,7 +5671,7 @@ void CreditCheck(std::string cpid, bool clearcache)
 					//Is project Valid
 					bool projectvalid = ProjectIsValid(sProj);
 					if (!projectvalid) sProj = "";
-					printf("CreditCheck:Enumerating %s;",sProj.c_str());
+					if (fDebug) printf("CreditCheck:Enumerating %s;",sProj.c_str());
 
 					if (sProj.length() > 3) 
 					{
@@ -5755,7 +5758,7 @@ void CreditCheck(std::string cpid, bool clearcache)
 							structc.MagnitudeCount++;
 							structc.Magnitude = (structc.TotalMagnitude/(structc.MagnitudeCount+.01));
 							mvCreditNodeCPID[cpid]=structc;
-							printf("Adding magnitude for project %s : ProjectAvgRAC %f, User RAC %f, new Magnitude %f\r\n",
+							if (fDebug) printf("Adding magnitude for project %s : ProjectAvgRAC %f, User RAC %f, new Magnitude %f\r\n",
 								sProj.c_str(),
 								projavg,
 								structc.verifiedrac,

@@ -561,14 +561,20 @@ void StakeMiner(CWallet *pwallet)
     while (true)
     {
         if (fShutdown)
+		{
+			printf("StakeMiner:ShuttingDown..");
             return;
+		}
 
         while (pwallet->IsLocked())
         {
             nLastCoinStakeSearchInterval = 0;
             MilliSleep(1000);
             if (fShutdown)
+			{
+				printf("StakeMiner:Exiting(WalletLocked)");
                 return;
+			}
         }
 
         while (vNodes.empty() || IsInitialBlockDownload())
@@ -577,7 +583,10 @@ void StakeMiner(CWallet *pwallet)
             fTryToSync = true;
             MilliSleep(1000);
             if (fShutdown)
-                return;
+			{
+				printf("StakeMiner:Exiting(InitialBlockDownload)");
+				return;
+			}
         }
 
         if (fTryToSync)
@@ -585,10 +594,11 @@ void StakeMiner(CWallet *pwallet)
             fTryToSync = false;
             if (vNodes.size() < 3 || nBestHeight < GetNumBlocksOfPeers())
             {
-                MilliSleep(60000);
+                MilliSleep(45000);
                 continue;
             }
         }
+Begin:
 
         //
         // Create new block
@@ -596,7 +606,11 @@ void StakeMiner(CWallet *pwallet)
         int64_t nFees;
         auto_ptr<CBlock> pblock(CreateNewBlock(pwallet, true, &nFees));
         if (!pblock.get())
-            return;
+		{
+			//This can happen after reharvesting CPIDs... Because CreateNewBlock() requires a valid CPID..  Start Over.
+			MilliSleep(1000);
+			goto Begin;
+		}
 
         // Trying to sign a block
         if (pblock->SignBlock(*pwallet, nFees))

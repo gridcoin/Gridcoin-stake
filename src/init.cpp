@@ -674,7 +674,6 @@ bool AppInit2()
     // ********************************************************* Step 3: parameter-to-internal-flags
 
     fDebug = GetBoolArg("-debug");
-	//fDebug=true;
     // -debug implies fDebug*
     if (fDebug)
         fDebugNet = true;
@@ -766,7 +765,8 @@ bool AppInit2()
     }
 #endif
 
-    if (GetBoolArg("-shrinkdebugfile", !fDebug) || true)        ShrinkDebugFile();
+    //if (GetBoolArg("-shrinkdebugfile", !fDebug))        ShrinkDebugFile();
+	ShrinkDebugFile();
 
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("GridCoin version %s (%s)\n", FormatFullVersion().c_str(), CLIENT_DATE.c_str());
