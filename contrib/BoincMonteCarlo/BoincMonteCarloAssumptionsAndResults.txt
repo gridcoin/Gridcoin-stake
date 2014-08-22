@@ -1,3 +1,7 @@
+The Boinc Monte Carlo Analysis Program is finished.
+
+
+Here is a summary of the results, the link to the program output, the link to the summary on gridcoin.us, and the link to the source code:
 
 
 
