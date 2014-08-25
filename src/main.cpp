@@ -419,8 +419,6 @@ std::string GetGlobalStatus()
 {
 	
 
-	//8-18-2014
-
 	try
 	{
 	std::string status = "";
@@ -1711,11 +1709,12 @@ int64_t GetProofOfStakeMaxReward(int64_t nCoinAge, int64_t nFees)
 
 double GetProofOfResearchReward(std::string cpid, bool VerifyingBlock)
 {
-	    printf("Calculating PoR\r\n");
+	    //printf("Calculating PoR\r\n");
 			
 		StructCPID mag = mvMagnitudes[cpid];
 		double owed = mag.owed;
 		double magnitude = mag.Magnitude;
+		if (owed < 0) owed = 0; // Can happen (newbies)
 			    
 		/*
 		double UserBalance = GetTotalBalance();
@@ -2445,12 +2444,12 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
 		if (nStakeReward > nCalculatedStakeReward)
             return DoS(1, error("ConnectBlock() : coinstake pays above maximum (actual=%"PRId64" vs calculated=%"PRId64")", nStakeReward, nCalculatedStakeReward));
 		
-		if (IsLockTimeVeryRecent(nTime) && bb.cpid=="INVESTOR")
+		if (IsLockTimeVeryRecent(nTime) && bb.cpid=="INVESTOR" && nStakeReward > 1)
 		{
 			int64_t nCalculatedResearchReward = GetProofOfStakeReward(nCoinAge, nFees, bb.cpid, true);
-			if (nStakeReward > nCalculatedResearchReward)
-            return DoS(100, error("ConnectBlock() : Investor Reward pays too much : cpid %s (actual=%"PRId64" vs calculated=%"PRId64")",
-			  bb.cpid.c_str(), nStakeReward/COIN, nCalculatedResearchReward/COIN));
+			if (nStakeReward > nCalculatedResearchReward*TOLERANCE_PERCENT)
+            return DoS(1, error("ConnectBlock() : Investor Reward pays too much : cpid %s (actual=%"PRId64" vs calculated=%"PRId64")",
+			  bb.cpid.c_str(), nStakeReward, nCalculatedResearchReward));
 		}
     }
 
@@ -2461,8 +2460,7 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
 
 	//Gridcoin: Maintain network consensus for Magnitude & Outstanding Amount Owed by CPID  
-	//8-10-2014
-
+	
 	//Grandfather
 
 	double mint = pindex->nMint/COIN;
@@ -3717,7 +3715,7 @@ std::string get_file_contents(const char *filename)
   std::ifstream in(filename, std::ios::in | std::ios::binary);
   if (in)
   {
-	  printf("loading file to string %s","test");
+	  if (fDebug)  printf("loading file to string %s","test");
 
     std::string contents;
     in.seekg(0, std::ios::end);
@@ -3744,7 +3742,7 @@ std::string deletefile(std::string filename)
 	std::string buffer;
 	std::string line;
 	ifstream myfile;   
-    printf("loading file to string %s",filename.c_str());
+    if (fDebug) printf("loading file to string %s",filename.c_str());
 
 	filesystem::path path = filename;
 
@@ -3778,7 +3776,7 @@ std::string getfilecontents(std::string filename)
 	std::string buffer;
 	std::string line;
 	ifstream myfile;   
-    printf("loading file to string %s",filename.c_str());
+    if (fDebug) printf("loading file to string %s",filename.c_str());
 
 	filesystem::path path = filename;
 
@@ -3844,8 +3842,8 @@ bool IsCPIDValid(std::string cpid, std::string ENCboincpubkey)
 			std::string bpk = AdvancedDecrypt(ENCboincpubkey);
 			std::string bpmd5 = RetrieveMd5(bpk);
 			if (bpmd5==cpid) return true;
-			printf("Md5<>cpid, md5 %s cpid %s      ",bpmd5.c_str(), cpid.c_str());
-			printf("     root bpk %s \r\n",bpk.c_str());
+			if (fDebug) printf("Md5<>cpid, md5 %s cpid %s  root bpk %s \r\n     ",bpmd5.c_str(), cpid.c_str(),bpk.c_str());
+
 			return false;
 	}
 	catch (std::exception &e) 
@@ -3875,7 +3873,7 @@ double GetOutstandingAmountOwed(std::string cpid)
 	StructCPID mag = mvMagnitudes[cpid];
 	if (!mag.initialized)
 	{
-		return -1;
+		return 0;
 	}
 	//Research Multiplier
 	double RESEARCH_MULTIPLIER = 1;
@@ -4706,8 +4704,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (pindex)
             pindex = pindex->pnext;
         int nLimit = 1000;
-		//8-22-2014
-
+		
 
         if (fDebug)    printf("getblocks %d to %s limit %d\n", (pindex ? pindex->nHeight : -1), hashStop.ToString().substr(0,20).c_str(), nLimit);
 

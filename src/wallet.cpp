@@ -1563,6 +1563,10 @@ bool CWallet::GetStakeWeight(uint64_t& nWeight)
 		//nWeight += boinc_boost;
 	}
 	*/
+	//WEIGHT SECTION 1:  Test incrementing every users weight by 150
+	//to help newbies get started
+	if (nWeight > 0) nWeight = nWeight + 150;
+	///////
 
     return true;
 }

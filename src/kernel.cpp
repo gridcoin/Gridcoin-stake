@@ -286,10 +286,11 @@ static bool CheckStakeKernelHashV1(unsigned int nBits, const CBlock& blockFrom, 
 
 //    CBigNum bnCoinDayWeight = CBigNum(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / COIN / (24 * 60 * 60);
 	//Testing Magnitude Modifier Here (08-21-2014):
-	CBigNum bnCoinDayWeight = CBigNum(nValueIn + (500*COIN) ) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / COIN / (24 * 60 * 60);
-
-
-
+	//WEIGHT MODIFICATION SECTION 2: Testing newbie stake allowance
+	//ToDo: Change this to be related to magnitude before go-live - investors can get started automatically
+	//This is primarily to allow a newbie researcher to get started with a low balance.
+	CBigNum bnCoinDayWeight = CBigNum(nValueIn + (5*COIN) ) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / COIN / (24 * 60 * 60);
+	
     targetProofOfStake = (bnCoinDayWeight * bnTargetPerCoinDay).getuint256();
 
     // Calculate hash
@@ -320,7 +321,7 @@ static bool CheckStakeKernelHashV1(unsigned int nBits, const CBlock& blockFrom, 
     // Now check if proof-of-stake hash meets target protocol
     if (CBigNum(hashProofOfStake) > bnCoinDayWeight * bnTargetPerCoinDay)
 	{   
-		printf("!");
+		//printf("!");
         return false;
 	}
     if (fDebug && !fPrintProofOfStake)

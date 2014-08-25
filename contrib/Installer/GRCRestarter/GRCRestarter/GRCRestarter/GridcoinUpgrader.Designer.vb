@@ -78,9 +78,9 @@ Partial Class GridcoinUpgrader
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.BackgroundImage = Global.GRCRestarter.My.Resources.Resources.gridcoin_horizontal
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(537, -20)
+        Me.PictureBox1.Location = New System.Drawing.Point(552, -11)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(414, 96)
+        Me.PictureBox1.Size = New System.Drawing.Size(389, 79)
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
@@ -104,7 +104,7 @@ Partial Class GridcoinUpgrader
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "GridcoinUpgrader"
-        Me.Text = "Gridcoin Stake - Maintenance v3.0"
+        Me.Text = "Gridcoin Stake - Maintenance v3.1"
         Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

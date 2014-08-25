@@ -54,14 +54,17 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\..\release\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="icsharpcode.sharpziplibstake, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\release\icsharpcode.sharpziplibstake.dll</HintPath>
     </Reference>
-    <Reference Include="OpenPop">
-      <HintPath>.\OpenPop.dll</HintPath>
+    <Reference Include="openpopstake, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\release\openpopstake.dll</HintPath>
     </Reference>
-    <Reference Include="sqlite.net">
-      <HintPath>..\..\..\..\release\sqlite.net.dll</HintPath>
+    <Reference Include="sqlitestake.net, Version=0.21.1869.3794, Culture=neutral, PublicKeyToken=c273bd375e695f9c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\release\sqlitestake.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

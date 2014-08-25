@@ -106,7 +106,8 @@ Public Class frmLeaderboard
 
                     Try
                         sValue = gridrow.Values(x).ToString
-                            If LCase(gridrow.FieldNames(x)) = "credits" Or LCase(gridrow.FieldNames(x)) = "projects" Or LCase(gridrow.FieldNames(x)) = "factor" Or LCase(gridrow.FieldNames(x)) = "adjusted credits" Then sValue = Trim(Math.Round(Val(GlobalizedDecimal(sValue)), 2))
+                            If LCase(gridrow.FieldNames(x)) = "credits" Or LCase(gridrow.FieldNames(x)) = "projects" Or LCase(gridrow.FieldNames(x)) = "factor" _
+                                   Or LCase(gridrow.FieldNames(x)) = "adjusted credits" Then sValue = Trim(Math.Round(Val(GlobalizedDecimal(sValue)), 2))
                             If LCase(gridrow.FieldNames(x)) = "scrypt sleep" Then
                                 sValue = String.Format("{0:p}", Val(GlobalizedDecimal(sValue)))
 

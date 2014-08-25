@@ -7,6 +7,8 @@ Imports ICSharpCode.SharpZipLib.Core
 
 Public Class GridcoinUpgrader
 
+    Private bDebug As Boolean = False
+
 
     Private prodURL As String = "http://download.gridcoin.us/download/downloadstake/"
     Private testURL As String = "http://download.gridcoin.us/download/downloadstaketestnet/"
@@ -19,14 +21,7 @@ Public Class GridcoinUpgrader
         Catch ex As Exception
         End Try
     End Sub
-    Public Sub KillMiners()
-        For x = 1 To 5
-            '   KillProcess("guiminer*")
-            '  KillProcess("cgminer")
-        Next x
-        System.Threading.Thread.Sleep(3000)
-        GC.Collect()
-    End Sub
+   
     Private Function GetURL() As String
         If bTestNet Then
             Return testURL
@@ -69,7 +64,7 @@ Public Class GridcoinUpgrader
 
             If Environment.CommandLine.Contains("restoresnapshot") Then
                 Try
-                    KillMiners()
+
                     KillProcess("gridcoinstake*")
                     RefreshScreen()
                     txtStatus.Text = "Restoring block chain from snapshot..."
@@ -94,7 +89,7 @@ Public Class GridcoinUpgrader
         End If
         If Environment.CommandLine.Contains("downloadblocks") Then
             Try
-                KillMiners()
+
                 KillProcess("gridcoinstake*")
                 txtStatus.Text = "Downloading Blocks File..."
                 RefreshScreen()
@@ -138,7 +133,7 @@ Public Class GridcoinUpgrader
         If Environment.GetCommandLineArgs.Length > 0 Then
             If Environment.CommandLine.Contains("reindex") Then
                 Try
-                    KillMiners()
+
                     KillProcess("gridcoinstake*")
                     System.Threading.Thread.Sleep(1000)
                     RemoveGrcDataDir()
@@ -175,7 +170,7 @@ Public Class GridcoinUpgrader
         End If
         If Environment.CommandLine.Contains("upgrade") Then
             Try
-                KillMiners()
+
                 ProgressBar1.Maximum = 1000
                 ProgressBar1.Value = 1
                 RefreshScreen()
@@ -183,7 +178,17 @@ Public Class GridcoinUpgrader
                 RefreshScreen()
                 System.Threading.Thread.Sleep(8000)
                 KillProcess("gridcoinstake*")
+                'Test permissions in target folder first
+                Try
+                    Dim sLocalPath As String = GetGRCAppDir() + "\permissiontest.dat"
+                    Dim sw As New System.IO.StreamWriter(sLocalPath, True)
+                    sw.WriteLine(Trim(Now) + ", " + "Permission Test")
+                    sw.Close()
+                Catch ex As Exception
+                    MsgBox("Upgrade failed.  Unable to write files to Application Directory.  Please take ownership of the application directory " + GetGRCAppDir() + ".", MsgBoxStyle.Critical)
 
+                    Environment.Exit(0)
+                End Try
                 'Upgrade the wallet before continuing
                 Dim sMsg As String = DynamicUpgradeWithManifest()
                 If Len(sMsg) > 0 Then
@@ -219,7 +224,7 @@ Public Class GridcoinUpgrader
         If Environment.CommandLine.Contains("120") Then
             System.Threading.Thread.Sleep(120000)
         End If
-        KillMiners()
+
         StartGridcoin()
         Environment.Exit(0)
         End
@@ -608,6 +613,11 @@ Public Class GridcoinUpgrader
     End Function
     Public Function GetGRCAppDir() As String
         Try
+            If bDebug Then
+                Dim fiAlt As New System.IO.FileInfo("c:\program files (x86)\gridcoinstake\")
+                Return fiAlt.DirectoryName
+
+            End If
             Dim fi As New System.IO.FileInfo(Application.ExecutablePath)
             Return fi.DirectoryName
         Catch ex As Exception
@@ -742,7 +752,7 @@ Public Class GridcoinUpgrader
     End Sub
     Public Function DynamicUpgradeWithManifest() As String
         Dim sMsg As String
-        For iTry As Long = 1 To 8
+        For iTry As Long = 1 To 5
             Dim sURL As String = GetURL()
             Dim w As New MyWebClient
             Dim sFiles As String

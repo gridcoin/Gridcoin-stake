@@ -594,6 +594,7 @@ void StakeMiner(CWallet *pwallet)
             fTryToSync = false;
             if (vNodes.size() < 3 || nBestHeight < GetNumBlocksOfPeers())
             {
+				printf("tryingtosync.");
                 MilliSleep(45000);
                 continue;
             }
@@ -609,6 +610,7 @@ Begin:
 		{
 			//This can happen after reharvesting CPIDs... Because CreateNewBlock() requires a valid CPID..  Start Over.
 			MilliSleep(1000);
+			printf("a1.");
 			goto Begin;
 		}
 
